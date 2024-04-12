@@ -22,4 +22,9 @@ Projeye başladığımızda yapmamız gereken her küçük iş için bir issue a
 - Kod pushlamadan önce git pull yapmayı unutmayın çünkü eğer bir şeyi mastera atarsak ve siz git pull yapmadan branchinize kod atarsanız sizin atığınız kodu mastera aldığımızda güncellenmiş kod eski haline dönebilir.
 - Aklıma gelirse başka bir şey eklerim. Kolay gelsin.
 
+## Kullanılabilecek APIlar 
+https://developer.themoviedb.org/reference/list-add-movie
+https://www.episodate.com/all-tv-shows
+
+
 

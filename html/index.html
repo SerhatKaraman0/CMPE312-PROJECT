@@ -5,56 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MyFilmList</title>
     <link rel="stylesheet" href="/css/style.css" />
-    <style>
-      /* Modal styles */
-      .modal {
-        display: none;
-        position: fixed;
-        z-index: 9999;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.5);
-        /* overflow: visible; preventing the scroll but shows up halfly*/
-        overflow: auto;
-      }
-
-      .modal-content {
-        background-color: #111;
-        margin: 10% auto;
-        padding: 20px;
-        border-radius: 5px;
-        max-width: 600px;
-        color: #fff;
-        position: relative;
-      }
-
-      .close {
-        position: absolute;
-        top: 10px;
-        right: 20px;
-        color: #fff;
-        font-size: 20px;
-        cursor: pointer;
-      }
-
-      .close:hover {
-        color: #ccc;
-      }
-    </style>
   </head>
   <body>
     <header>
       <h1>MyFilmList</h1>
       <nav>
         <ul>
-          <li><a href="/html/user-view.html">Home</a></li>
-          <li><a href="/html/lists.html">My Lists</a></li>
-          <li><a href="/html/watch-later.html">Watch Later</a></li>
-          <li><a href="/html/blog.html">Blog</a></li>
-          <li><a href="/html/friends.html">Friends</a></li>
+          <li><a href="/html/user-view.html" target="_blank" style="color: yellow;">Home</a></li>
+          <li><a href="/html/lists.html" target="_blank">My Lists</a></li>
+          <li>
+            <a href="/html/watch-later.html" target="_blank">Watch Later</a>
+          </li>
+          <li><a href="/html/blog.html" target="_blank">Blog</a></li>
+          <li><a href="/html/friends.html" target="_blank">Friends</a></li>
         </ul>
       </nav>
     </header>
@@ -65,7 +28,12 @@
         <p>
           Track the films you've watched, create watchlists, and read reviews.
         </p>
-        <a href="#" class="btn-signup">Sign Up</a>
+        <a
+          href="/html/login-signup-page.html"
+          target="_blank"
+          class="btn-signup"
+          >Sign Up</a
+        >
       </section>
 
       <section class="film-list">
@@ -127,41 +95,42 @@
           </div>
         </div>
       </section>
+      <section>
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">Film Title</h2>
+            <div class="video-container">
+              <!-- Embedded YouTube video for trailer -->
+              <iframe
+                id="trailer-video"
+                width="560"
+                height="315"
+                src="https://www.youtube.com/watch?v=IE8-izIba40"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <p><strong>Year:</strong> <span id="modal-year">Year</span></p>
+            <p>
+              <strong>Director:</strong>
+              <span id="modal-director">Director</span>
+            </p>
+            <p>
+              <strong>Ratings:</strong> <span id="modal-ratings">Ratings</span>
+            </p>
+            <p>
+              <strong>Description:</strong>
+              <span id="modal-description">Description</span>
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
-
     <footer>
       <p>&copy; 2024 MyFilmList</p>
     </footer>
-
-    <!-- Modal -->
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2 id="modal-title">Film Title</h2>
-        <div class="video-container">
-          <!-- Embedded YouTube video for trailer -->
-          <iframe
-            id="trailer-video"
-            width="560"
-            height="315"
-            src=""
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <p><strong>Year:</strong> <span id="modal-year">Year</span></p>
-        <p>
-          <strong>Director:</strong> <span id="modal-director">Director</span>
-        </p>
-        <p><strong>Ratings:</strong> <span id="modal-ratings">Ratings</span></p>
-        <p>
-          <strong>Description:</strong>
-          <span id="modal-description">Description</span>
-        </p>
-      </div>
-    </div>
-
     <script src="/js/main.js"></script>
   </body>
 </html>

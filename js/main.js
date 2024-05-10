@@ -108,13 +108,24 @@ function toggleButton(event) {
             </div>
           </div>
 */
-
-async function parseResponse(response) {
-  const responseJSON = response.json();
-  const results = responseJSON.results;
-
-  return results;
+function parseResponse(response) {
+  const arr = [];
+  return response.json().then((responseJSON) => {
+    const results = responseJSON.results;
+    const movieNames = results.map((movie) => {
+      const movieJSON = {};
+      movieJSON["title"] = movie.title;
+      movieJSON["overview"] = movie.overview;
+      movieJSON["poster_path"] =
+        "https://image.tmdb.org/t/p/w500" + movie.backdrop_path;
+      movieJSON["release_date"] = movie.release_date;
+      movieJSON["rating"] = movie.vote_average;
+      arr.push(movieJSON);
+    });
+    return arr;
+  });
 }
+
 const options = {
   method: "GET",
   headers: {
@@ -129,5 +140,5 @@ fetch(
   options
 )
   .then((response) => parseResponse(response))
-  .then((response) => console.log(response))
+  .then((movieNames) => console.log(movieNames))
   .catch((err) => console.error(err));

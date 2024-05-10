@@ -109,11 +109,25 @@ function toggleButton(event) {
           </div>
 */
 function parseResponse(response) {
+  var modal = document.getElementById("myModal");
+  var title = document.getElementById("modal-title");
+  var year = document.getElementById("modal-year");
+  var director = document.getElementById("modal-director");
+  var ratings = document.getElementById("modal-ratings");
+  var description = document.getElementById("modal-description");
+  var trailerVideo = document.getElementById("trailer-video");
+
   const arr = [];
   return response.json().then((responseJSON) => {
     const results = responseJSON.results;
     const movieNames = results.map((movie) => {
       const movieJSON = {};
+      title.innerHTML = movie.title;
+      year.innerHTML = movie.release_date;
+      director.innerHTML = "filmDetails.director";
+      ratings.innerHTML = movie.vote_average;
+      description.innerHTML = movie.overview;
+
       movieJSON["title"] = movie.title;
       movieJSON["overview"] = movie.overview;
       movieJSON["poster_path"] =

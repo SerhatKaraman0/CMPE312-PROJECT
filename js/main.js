@@ -93,3 +93,41 @@ function toggleButton(event) {
     button.innerText += " Added";
   }
 }
+
+/*
+<div class="film" onclick="openModal('ant')">
+            <img src="/img/antman.jpg" alt="Antman" />
+            <h3>Ant-man</h3>
+            <div class="add-buttons">
+              <button class="watched-btn" onclick="toggleButton(event)">
+                Watched
+              </button>
+              <button class="watch-later-btn" onclick="toggleButton(event)">
+                Watch Later
+              </button>
+            </div>
+          </div>
+*/
+
+async function parseResponse(response) {
+  const responseJSON = response.json();
+  const results = responseJSON.results;
+
+  return results;
+}
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMzgzNjlhOGQ3M2Y1OWVmZDk0MjhjMDMxYWE5NGEwYyIsInN1YiI6IjVlZDUzOTg3MWIxNTdkMDAxZjU2ZjMxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.t6oglj_4DkYEeq59zGSFArZw-r9oUG0Rh8mbWCtW6zk",
+  },
+};
+
+fetch(
+  "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
+  options
+)
+  .then((response) => parseResponse(response))
+  .then((response) => console.log(response))
+  .catch((err) => console.error(err));

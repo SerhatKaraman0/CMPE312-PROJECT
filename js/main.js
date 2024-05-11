@@ -1,71 +1,82 @@
-function openModal(filmId) {
+var genreID_JSON = {
+  28: "Action",
+  12: "Adventure",
+  16: "Animation",
+  35: "Comedy",
+  80: "Crime",
+  99: "Documentary",
+  18: "Drama",
+  10751: "Family",
+  14: "Fantasy",
+  36: "History",
+  27: "Horror",
+  10402: "Music",
+  9648: "Mystery",
+  10749: "Romance",
+  878: "Science Fiction",
+  10770: "TV Movie",
+  53: "Thriller",
+  10752: "War",
+  37: "Western",
+  10759: "Action & Adventure",
+  10762: "Kids",
+  10763: "News",
+  10764: "Reality",
+  10765: "Sci-Fi & Fantasy",
+  10766: "Soap",
+  10767: "Talk",
+  10768: "War & Politics",
+};
+
+var api_key =
+  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMzgzNjlhOGQ3M2Y1OWVmZDk0MjhjMDMxYWE5NGEwYyIsInN1YiI6IjVlZDUzOTg3MWIxNTdkMDAxZjU2ZjMxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.t6oglj_4DkYEeq59zGSFArZw-r9oUG0Rh8mbWCtW6zk";
+
+function getGenreName(id) {
+  return genreID_JSON[id];
+}
+
+function getTrailerID(movie_id) {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMzgzNjlhOGQ3M2Y1OWVmZDk0MjhjMDMxYWE5NGEwYyIsInN1YiI6IjVlZDUzOTg3MWIxNTdkMDAxZjU2ZjMxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.t6oglj_4DkYEeq59zGSFArZw-r9oUG0Rh8mbWCtW6zk",
+    },
+  };
+
+  fetch(
+    `https://api.themoviedb.org/3/movie/${movie_id}/videos?language=en-US`,
+    options
+  )
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
+}
+
+function openModal(movie) {
+  var movie_id = movie.id;
   var modal = document.getElementById("myModal");
   var title = document.getElementById("modal-title");
   var year = document.getElementById("modal-year");
   var director = document.getElementById("modal-director");
+  var genres = document.getElementById("modal-genres");
   var ratings = document.getElementById("modal-ratings");
   var description = document.getElementById("modal-description");
   var trailerVideo = document.getElementById("trailer-video");
 
-  // Assuming you have an object or database containing film details
-  var filmDetails = getFilmDetailsById(filmId);
+  title.innerHTML = movie.title;
+  year.innerHTML = movie.release_date;
+  director.innerHTML = "filmDetails.director";
+  genres.innerHTML = movie.genre_ids
+    ? movie.genre_ids.map((id) => getGenreName(id)).join(", ")
+    : "Not Found";
+  ratings.innerHTML = movie.vote_average + "/10";
+  description.innerHTML = movie.overview;
 
-  // Populate modal with film details
-  title.innerHTML = filmDetails.title;
-  year.innerHTML = filmDetails.year;
-  director.innerHTML = filmDetails.director;
-  ratings.innerHTML = filmDetails.ratings;
-  description.innerHTML = filmDetails.description;
-
-  trailerVideo.src = "https://www.youtube.com/embed/" + filmDetails.trailerId;
+  trailerVideo.src = "https://www.youtube.com/embed/";
 
   modal.style.display = "block";
-}
-
-function getFilmDetailsById(filmId) {
-  if (filmId === "potc") {
-    return {
-      title: "Pirates of the Caribbean: Dead Men Tell No Tales",
-      year: "2017",
-      director: "Joachim Rønning & Espen Sandberg",
-      ratings: "6.5/10",
-      description:
-        "Captain Jack Sparrow (Johnny Depp) finds the winds of ill-fortune blowing even more strongly when deadly ghost pirates led by his old nemesis, the terrifying Captain Salazar (Javier Bardem), escape from the Devil's Triangle, determined to kill every pirate at sea...including him. Captain Jack's only hope of survival lies in seeking out the legendary Trident of Poseidon, a powerful artifact that bestows upon its possessor total control over the seas.",
-      trailerId: "Hgeu5rhoxxY",
-    };
-  } else if (filmId === "dune2") {
-    return {
-      title: "Dune: Part Two",
-      year: "2024",
-      director: "Denis Villeneuve",
-      ratings: "8.9/10",
-      description:
-        "Paul Atreides unites with Chani and the Fremen while on a warpath of revenge against the conspirators who destroyed his family. Facing a choice between the love of his life and the fate of the known universe, he endeavors to prevent a terrible future only he can foresee.",
-      trailerId: "Way9Dexny3w",
-    };
-  } else if (filmId === "babyd") {
-    return {
-      title: "Baby Driver",
-      year: "2017",
-      director: "Edgar Wright",
-      ratings: "7.5/10",
-      description:
-        "Baby is a young and partially hearing impaired getaway driver who can make any wild move while in motion with the right track playing. It's a critical talent he needs to survive his indentured servitude to the crime boss, Doc, who values his role in his meticulously planned robberies. However, just when Baby thinks he is finally free and clear to have his own life with his new girlfriend, Debora, Doc coerces him back for another job.",
-      trailerId: "zTvJJnoWIPk",
-    };
-  } else if (filmId === "ant") {
-    return {
-      title: "Ant-man",
-      year: "2015",
-      director: "Peyton Reed",
-      ratings: "7.2/10",
-      description:
-        "Armed with the astonishing ability to shrink in scale but increase in strength, con-man Scott Lang must embrace his inner-hero and help his mentor, Dr. Hank Pym, protect the secret behind his spectacular Ant-Man suit from a new generation of towering threats. Against seemingly insurmountable obstacles, Pym and Lang must plan and pull off a heist that will save the world.",
-      trailerId: "pWdKf3MneyI",
-    };
-  } else {
-    return null; // Handle other cases or return null if film not found
-  }
 }
 
 function closeModal() {
@@ -93,3 +104,168 @@ function toggleButton(event) {
     button.innerText += " Added";
   }
 }
+
+function fetchMovieData() {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${api_key}`,
+    },
+  };
+
+  return fetch(
+    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
+    options
+  )
+    .then((response) => response.json())
+    .then((data) => data.results);
+}
+
+function fetchUpcomingMovieData() {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMzgzNjlhOGQ3M2Y1OWVmZDk0MjhjMDMxYWE5NGEwYyIsInN1YiI6IjVlZDUzOTg3MWIxNTdkMDAxZjU2ZjMxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.t6oglj_4DkYEeq59zGSFArZw-r9oUG0Rh8mbWCtW6zk",
+    },
+  };
+
+  return fetch(
+    "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
+    options
+  )
+    .then((response) => response.json())
+    .then((data) => data.results);
+}
+
+function fetchTopRatedMovieData() {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMzgzNjlhOGQ3M2Y1OWVmZDk0MjhjMDMxYWE5NGEwYyIsInN1YiI6IjVlZDUzOTg3MWIxNTdkMDAxZjU2ZjMxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.t6oglj_4DkYEeq59zGSFArZw-r9oUG0Rh8mbWCtW6zk",
+    },
+  };
+
+  return fetch(
+    "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+    options
+  )
+    .then((response) => response.json())
+    .then((data) => data.results);
+}
+
+function fetchPopularMovieData() {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMzgzNjlhOGQ3M2Y1OWVmZDk0MjhjMDMxYWE5NGEwYyIsInN1YiI6IjVlZDUzOTg3MWIxNTdkMDAxZjU2ZjMxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.t6oglj_4DkYEeq59zGSFArZw-r9oUG0Rh8mbWCtW6zk",
+    },
+  };
+
+  return fetch(
+    "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+    options
+  )
+    .then((response) => response.json())
+    .then((data) => data.results);
+}
+
+// Function to create and populate the movie div
+function createMovieDiv(movie) {
+  // Create new elements
+  const filmDiv = document.createElement("div");
+  const image = document.createElement("img");
+  const title = document.createElement("h3");
+  const addButtonContainer = document.createElement("div");
+  const watchedButton = document.createElement("button");
+  const watchLaterButton = document.createElement("button");
+
+  // Set attributes and text content
+  filmDiv.classList.add("film");
+  filmDiv.onclick = function () {
+    openModal(movie);
+  }; // Replace 'potc' with the appropriate movie identifier
+  image.src = movie.poster_path
+    ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+    : "/default-poster.jpg";
+  image.alt = movie.title;
+  title.textContent = movie.title;
+  addButtonContainer.classList.add("add-buttons");
+  watchedButton.classList.add("watched-btn");
+  watchedButton.textContent = "Watched";
+  watchedButton.onclick = function (event) {
+    toggleButton(event);
+  };
+  watchLaterButton.classList.add("watch-later-btn");
+  watchLaterButton.textContent = "Watch Later";
+  watchLaterButton.onclick = function (event) {
+    toggleButton(event);
+  };
+
+  // Append elements
+  addButtonContainer.appendChild(watchedButton);
+  addButtonContainer.appendChild(watchLaterButton);
+  filmDiv.appendChild(image);
+  filmDiv.appendChild(title);
+  filmDiv.appendChild(addButtonContainer);
+
+  return filmDiv;
+}
+
+// Function to append movie div to parent container
+function appendMovieDiv(movieDiv, id) {
+  const parentContainer = document.getElementById(id);
+  parentContainer.appendChild(movieDiv);
+}
+
+// Fetch movie data and create movie divs
+fetchMovieData()
+  .then((movies) => {
+    movies.forEach((movie) => {
+      const movieDiv1 = createMovieDiv(movie);
+      appendMovieDiv(movieDiv1, "film-row");
+    });
+  })
+  .catch((error) => {
+    console.error("Error fetching movie data:", error);
+  });
+
+fetchUpcomingMovieData()
+  .then((movies) => {
+    movies.forEach((movie) => {
+      const movieDiv2 = createMovieDiv(movie);
+      appendMovieDiv(movieDiv2, "film-row-upcoming");
+    });
+  })
+  .catch((error) => {
+    console.error("Error fetching movie data:", error);
+  });
+
+fetchTopRatedMovieData()
+  .then((movies) => {
+    movies.forEach((movie) => {
+      const movieDiv3 = createMovieDiv(movie);
+      appendMovieDiv(movieDiv3, "film-row-top-rated");
+    });
+  })
+  .catch((error) => {
+    console.error("Error fetching movie data:", error);
+  });
+
+fetchPopularMovieData()
+  .then((movies) => {
+    movies.forEach((movie) => {
+      const movieDiv4 = createMovieDiv(movie);
+      appendMovieDiv(movieDiv4, "film-row-popular");
+    });
+  })
+  .catch((error) => {
+    console.error("Error fetching movie data:", error);
+  });
+

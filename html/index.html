@@ -11,7 +11,11 @@
       <h1>MyFilmList</h1>
       <nav>
         <ul>
-          <li><a href="/html/user-view.html" target="_blank" style="color: yellow;">Home</a></li>
+          <li>
+            <a href="/html/user-view.html" target="_blank" style="color: yellow"
+              >Home</a
+            >
+          </li>
           <li><a href="/html/lists.html" target="_blank">My Lists</a></li>
           <li>
             <a href="/html/watch-later.html" target="_blank">Watch Later</a>
@@ -35,66 +39,24 @@
           >Sign Up</a
         >
       </section>
-
+      
       <section class="film-list">
-        <h2>Recently Released</h2>
-        <div class="film-row">
-          <div class="film" onclick="openModal('potc')">
-            <img
-              src="/img/carib.jpg"
-              alt="Pirates of the Caribbean: Dead Men Tell No Tales"
-            />
-            <h3>Pirates of the Caribbean: Dead Men Tell No Tales</h3>
-            <div class="add-buttons">
-              <button class="watched-btn" onclick="toggleButton(event)">
-                Watched
-              </button>
-              <button class="watch-later-btn" onclick="toggleButton(event)">
-                Watch Later
-              </button>
-            </div>
-          </div>
-
-          <div class="film" onclick="openModal('dune2')">
-            <img src="/img/dune.jpg" alt="Dune 2" />
-            <h3>Dune: Part Two</h3>
-            <div class="add-buttons">
-              <button class="watched-btn" onclick="toggleButton(event)">
-                Watched
-              </button>
-              <button class="watch-later-btn" onclick="toggleButton(event)">
-                Watch Later
-              </button>
-            </div>
-          </div>
-
-          <div class="film" onclick="openModal('babyd')">
-            <img src="/img/baby-driver.jpg" alt="Baby Driver" />
-            <h3>Baby Driver</h3>
-            <div class="add-buttons">
-              <button class="watched-btn" onclick="toggleButton(event)">
-                Watched
-              </button>
-              <button class="watch-later-btn" onclick="toggleButton(event)">
-                Watch Later
-              </button>
-            </div>
-          </div>
-
-          <div class="film" onclick="openModal('ant')">
-            <img src="/img/antman.jpg" alt="Antman" />
-            <h3>Ant-man</h3>
-            <div class="add-buttons">
-              <button class="watched-btn" onclick="toggleButton(event)">
-                Watched
-              </button>
-              <button class="watch-later-btn" onclick="toggleButton(event)">
-                Watch Later
-              </button>
-            </div>
-          </div>
-        </div>
+        <h2>Upcoming Movies</h2>
+        <div class="film-row" id="film-row-upcoming"></div>
       </section>
+      <section class="film-list">
+        <h2>Now Playing</h2>
+        <div class="film-row" id="film-row"></div>
+      </section>
+      <section class="film-list">
+        <h2>Popular</h2>
+        <div class="film-row" id="film-row-popular"></div>
+      </section>
+      <section class="film-list">
+        <h2>Top Rated</h2>
+        <div class="film-row" id="film-row-top-rated"></div>
+      </section>
+
       <section>
         <div id="myModal" class="modal">
           <div class="modal-content">
@@ -116,6 +78,10 @@
             <p>
               <strong>Director:</strong>
               <span id="modal-director">Director</span>
+            </p>
+            <p>
+              <strong>Genres:</strong>
+              <span id="modal-genres">Genre</span>
             </p>
             <p>
               <strong>Ratings:</strong> <span id="modal-ratings">Ratings</span>

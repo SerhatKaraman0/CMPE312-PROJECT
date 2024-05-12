@@ -45,13 +45,30 @@ function getTrailerID(movie_id) {
     },
   };
 
-  fetch(
+  return fetch(
     `https://api.themoviedb.org/3/movie/${movie_id}/videos?language=en-US`,
     options
   )
     .then((response) => response.json())
-    .then((response) => console.log(response))
-    .catch((err) => console.error(err));
+    .then((data) => data.results);
+}
+
+function getCrewDetails(movie_id) {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMzgzNjlhOGQ3M2Y1OWVmZDk0MjhjMDMxYWE5NGEwYyIsInN1YiI6IjVlZDUzOTg3MWIxNTdkMDAxZjU2ZjMxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.t6oglj_4DkYEeq59zGSFArZw-r9oUG0Rh8mbWCtW6zk",
+    },
+  };
+
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${movie_id}/credits?language=en-US`,
+    options
+  )
+    .then((response) => response.json())
+    .then((data) => data.cast);
 }
 
 function openModal(movie) {
@@ -59,22 +76,44 @@ function openModal(movie) {
   var modal = document.getElementById("myModal");
   var title = document.getElementById("modal-title");
   var year = document.getElementById("modal-year");
-  var director = document.getElementById("modal-director");
+  var director = document.getElementById("modal-crew");
   var genres = document.getElementById("modal-genres");
   var ratings = document.getElementById("modal-ratings");
   var description = document.getElementById("modal-description");
   var trailerVideo = document.getElementById("trailer-video");
 
+  var crewMembersPromise = getCrewDetails(movie.id).then((crew) => {
+    return crew
+      .slice(0, 5)
+      .map((member) => {
+        return member.name; // Return the name of the crew member
+      })
+      .join(", ");
+  });
+
+  crewMembersPromise.then((crewMembers) => {
+    director.innerHTML = crewMembers;
+  });
+
   title.innerHTML = movie.title;
   year.innerHTML = movie.release_date;
-  director.innerHTML = "filmDetails.director";
   genres.innerHTML = movie.genre_ids
     ? movie.genre_ids.map((id) => getGenreName(id)).join(", ")
     : "Not Found";
   ratings.innerHTML = movie.vote_average + "/10";
   description.innerHTML = movie.overview;
 
-  trailerVideo.src = "https://www.youtube.com/embed/";
+  try {
+    const trailer = getTrailerID(movie_id);
+    if (trailer && trailer.length > 0 && trailer[0].type === "Trailer") {
+      trailerVideo.src = "https://www.youtube.com/embed/" + trailer[0].id;
+    } else {
+      trailerVideo.src = ""; // No trailer available
+    }
+  } catch (error) {
+    console.error("Error fetching trailer data:", error);
+    trailerVideo.src = ""; // Reset trailer video source
+  }
 
   modal.style.display = "block";
 }
@@ -268,4 +307,3 @@ fetchPopularMovieData()
   .catch((error) => {
     console.error("Error fetching movie data:", error);
   });
-

@@ -27,7 +27,53 @@
         </ul>
       </nav>
     </header>
-    <main><h1>blog</h1></main>
+    <main>
+      <section class="blogs">
+        <h2>Recent Blogs</h2>
+        <div id="blog-list">
+          <!-- Existing blog posts will be displayed here -->
+          <div class="blog-post">
+            <h2>Title of the Blog</h2>
+            <div class="blog-author">
+              <div class="author-info">
+                <div class="author-picture">
+                  <img src="author.jpg" alt="Author's Profile Picture" />
+                </div>
+                <span class="author-name">Author's Name</span>
+              </div>
+            </div>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
+              vehicula mi sit amet sapien condimentum, id aliquam nisi
+              ullamcorper. Quisque vel ipsum nunc. Fusce ultricies tincidunt
+              lorem, eget gravida lectus vehicula ac. Vivamus tempus varius
+              purus, nec rhoncus dui accumsan id.
+            </p>
+            <div class="blog-image">
+              <img src="blog-image.jpg" alt="Blog Image" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <aside class="sidebar">
+        <h2>Create New Post</h2>
+        <form id="blog-form">
+          <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required />
+          </div>
+          <div>
+            <label for="image">Image URL:</label>
+            <input type="url" id="image" name="image" />
+          </div>
+          <div>
+            <label for="body">Body:</label>
+            <textarea id="body" name="body" rows="4" required></textarea>
+          </div>
+          <button type="submit">Post</button>
+        </form>
+      </aside>
+    </main>
 
     <footer>
       <p>&copy; 2024 MyFilmList</p>

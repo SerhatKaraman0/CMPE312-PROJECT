@@ -95,6 +95,20 @@ function openModal(movie) {
     director.innerHTML = crewMembers;
   });
 
+  var trailerVideoPromise = getTrailerID(movie.id).then((videos) => {
+    const idArr = [];
+    return videos.map((video) => {
+      if (video.site == "YouTube" && video.type == "Trailer") {
+        idArr.push(video.key);
+      }
+      return idArr;
+    });
+  });
+
+  trailerVideoPromise.then((trailerVideoID) => {
+    trailerVideo.src = "https://www.youtube.com/embed/" + trailerVideoID[0][0];
+  });
+
   title.innerHTML = movie.title;
   year.innerHTML = movie.release_date;
   genres.innerHTML = movie.genre_ids
@@ -102,18 +116,6 @@ function openModal(movie) {
     : "Not Found";
   ratings.innerHTML = movie.vote_average + "/10";
   description.innerHTML = movie.overview;
-
-  try {
-    const trailer = getTrailerID(movie_id);
-    if (trailer && trailer.length > 0 && trailer[0].type === "Trailer") {
-      trailerVideo.src = "https://www.youtube.com/embed/" + trailer[0].id;
-    } else {
-      trailerVideo.src = ""; // No trailer available
-    }
-  } catch (error) {
-    console.error("Error fetching trailer data:", error);
-    trailerVideo.src = ""; // Reset trailer video source
-  }
 
   modal.style.display = "block";
 }

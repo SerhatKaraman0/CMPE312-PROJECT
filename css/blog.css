@@ -1,40 +1,196 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #222;
-    color: #fff;
-    margin: 0;
-    padding: 0;
-  }
-  
-  header {
-    background-color: #111;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav ul li {
-    display: inline;
-    margin-right: 20px;
-  }
-  
-  nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    transition: color 0.3s;
-  }
-  
-  nav ul li a:hover {
-    color: #ffcc00; /* Change to your preferred hover color */
-  }
-  
-  main {
-    padding: 20px;
-  }
+  font-family: Arial, sans-serif;
+  background-color: #222;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #111;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #ffcc00; /* Change to your preferred hover color */
+}
+
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #222;
+  color: white;
+}
+
+/* Header styles */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* Main styles */
+main {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+/* Blogs section styles */
+.blogs {
+  flex: 1;
+  background-color: #222;
+  padding: 1rem;
+}
+
+.blogs h2 {
+  margin-bottom: 1rem;
+}
+
+/* Sidebar styles */
+.sidebar {
+  flex-basis: 300px;
+  background-color: #333;
+  padding: 1rem;
+}
+
+.sidebar h2 {
+  margin-bottom: 1rem;
+}
+
+/* Blog form styles */
+#blog-form {
+  margin-bottom: 1rem;
+}
+
+#blog-form div {
+  margin-bottom: 0.5rem;
+}
+
+#blog-form label {
+  display: block;
+  font-weight: bold;
+}
+
+#blog-form input[type="text"],
+#blog-form input[type="url"],
+#blog-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#blog-form textarea {
+  resize: vertical;
+}
+
+#blog-form button {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #333;
+  color: #fff;
+  border: 1px solid white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#blog-form button:hover {
+  background-color: #555;
+}
+
+#blog-list {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.blog-post {
+  margin-bottom: 40px;
+  background-color: #333;
+  padding: 27px;
+}
+
+.blog-post h2 {
+  color: #ff6f61;
+}
+
+.blog-author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+}
+
+.author-picture img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.author-name {
+  font-weight: bold;
+}
+
+p {
+  line-height: 1.5;
+}
+
+.blog-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+
+/* Footer styles */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}

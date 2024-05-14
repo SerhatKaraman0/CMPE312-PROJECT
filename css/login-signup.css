@@ -48,3 +48,35 @@ footer {
   text-align: center;
   padding: 1rem;
 }
+
+section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: aqua;
+}
+
+.form-box{
+  position: relative;
+  width: 400px;
+  height: 450px;
+  background: red;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+h2{
+  font-size: 2em;
+  color: white;
+  text-align: center;
+}
+
+.email{
+  position: absolute;
+  margin-left: 3px;
+  display: flex;
+  margin-top: -20px;
+  color: black;
+}

@@ -1,0 +1,106 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #222;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #111;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #ffcc00; /* Change to your preferred hover color */
+}
+
+main {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.button-group {
+  margin-bottom: 20px;
+}
+
+.button-group button {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.button-group button:hover {
+  background-color: yellow;
+  color: black;
+}
+
+.button-group button.selected {
+  background-color: yellow;
+  color: black;
+}
+.location-search {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.input {
+  /* Set the input element to take up 100% of its container width */
+  width: 400px; /* Set a maximum width to prevent it from stretching too wide */
+  color: white;
+  /* Add any other necessary styles */
+}
+#location-search {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  flex: 1; /* Take remaining space */
+}
+.hide {
+  display: none;
+}
+#search-btn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}

@@ -64,7 +64,6 @@ section{
   background: none;
   align-items: center;
   justify-content: center;
-  display: flex;
   border-radius: 60px;
   border: 2px solid #ffcc00;
   display: flex;
@@ -139,6 +138,7 @@ h2{
   cursor: pointer;
   font-size: 1em;
   margin-left: 75px;
+  margin-top: 20px;
   
 
 }
@@ -158,10 +158,20 @@ h2{
 }
 
 .sign2:hover, .log2:hover, .Login:hover{
-  background-color: white;
   opacity: 0.7;
   transition: opacity 0.2s;
 }
+
+
+.Login:hover:active{
+  background-color:#ffcc00 ;
+}
+
+/* Toggled button styles */
+.toggled {
+  background-color: #ffcc00; /* Toggled color */
+}
+
 
 
 .register{
@@ -169,5 +179,11 @@ h2{
 }
 .register :hover{
   color: white;
+}
+
+.forget{
+  text-align: center;
+  margin-top: 10px;
+  
 }
 

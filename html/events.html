@@ -4,21 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MyFilmList</title>
-    <link
-      href="https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.min.css"
-      rel="stylesheet"
-    />
-    <script
-      id="search-js"
-      defer
-      src="https://api.mapbox.com/search-js/v1.0.0-beta.21/web.js"
-    ></script>
+
     <link rel="stylesheet" href="/css/events.css" />
-    <style>
-      .input {
-        width: 600px;
-      }
-    </style>
   </head>
   <body>
     <header>
@@ -51,135 +38,48 @@
         <button>Fundraiser Events</button>
         <button>Concerts</button>
         <button>Festivals</button>
+        <button>Party</button>
+        <button>Fashion Events</button>
+        <button>Art Events</button>
       </div>
-      <div class="location-search">
-        <form class="flex flex--column">
-          <div class="grid grid--gut24 mb60">
-            <div class="col col--auto-mm w-full">
-              <!-- Input form -->
-              <label class="txt-s txt-bold color-gray mb3">Address</label>
-              <input
-                class="input mb12"
-                placeholder="Start typing your address, e.g. 123 Main..."
-                autocomplete="address-line1"
-                id="mapbox-autofill"
-              />
-              <!-- Form buttons -->
-              <div class="mb30 submit-btns">
-                <button type="submit" class="btn round" id="btn-confirm">
-                  Confirm
-                </button>
-                <button
-                  type="button"
-                  class="btn round btn--gray-light"
-                  id="btn-reset"
-                >
-                  Reset
-                </button>
-              </div>
-            </div>
-            <div class="col col--auto-mm">
-              <!-- Visual confirmation map -->
-              <div
-                id="minimap-container"
-                class="none h240 w360 relative mt18"
-              ></div>
-            </div>
-          </div>
-        </form>
+      <div class="status"></div>
+      <div class="button-and-date">
+        <button class="find-state">Find Events</button>
 
-        <div id="validation-msg" class="mt24 txt-m txt-bold none">Test</div>
+        <select name="date" id="dates">
+          <option value="today" selected>Today</option>
+          <option value="tomorrow">Tomorrow</option>
+          <option value="week">This Week</option>
+          <option value="weekend">This Weekend</option>
+          <option value="next_week">Next Weekend</option>
+          <option value="month">This month</option>
+          <option value="next_month">Next Month</option>
+        </select>
       </div>
+
+      <div id="event-cards"></div>
     </main>
-    <script src="/js/events.js"></script>
-    <script>
-      const ACCESS_TOKEN =
-        "pk.eyJ1IjoibWFzdGVyb2Zub25uZWVlIiwiYSI6ImNsdzVqMGVpbjE5aG0ybHBkd29lOTBmYWgifQ.nPjBm1hAtiHgxkN9f5AbHA";
-
-      let autofillCollection;
-      let minimap;
-
-      // Form operation functions
-      function showMap() {
-        const el = document.getElementById("minimap-container");
-        el.classList.remove("none");
-      }
-      function collapseForm() {
-        document.querySelector(".submit-btns").classList.add("hide");
-      }
-      function setValidationText(color, msg, clear = false) {
-        const validationTextElement = document.getElementById("validation-msg");
-        if (clear) validationTextElement.classList.add("none");
-        validationTextElement.classList.remove("color-green", "color-red");
-        validationTextElement.classList.add(`color-${color}`);
-        validationTextElement.innerText = msg;
-        validationTextElement.classList.remove("none");
-      }
-
-      function submitForm() {
-        setValidationText("green", "Order successfully submitted.");
-        setTimeout(() => {
-          resetForm();
-        }, 2500);
-      }
-      function resetForm() {
-        const inputs = document.querySelectorAll("input");
-        inputs.forEach((input) => (input.value = ""));
-
-        setValidationText("green", "", true);
-        autofillCollection.update();
-        minimap.feature = null;
-      }
-
-      // Bind functions to HTML buttons
-      document.getElementById("btn-reset").addEventListener("click", resetForm);
-
-      document.getElementById("search-js").onload = () => {
-        mapboxsearch.config.accessToken = ACCESS_TOKEN;
-
-        autofillCollection = mapboxsearch.autofill({});
-
-        minimap = new MapboxAddressMinimap();
-        minimap.canAdjustMarker = true;
-        minimap.satelliteToggle = true;
-        minimap.onSaveMarkerLocation = (lnglat) => {
-          console.log(`Marker moved to ${lnglat}`);
-        };
-        const minimapContainer = document.getElementById("minimap-container");
-        minimapContainer.appendChild(minimap);
-
-        autofillCollection.addEventListener("retrieve", async (e) => {
-          if (minimap) {
-            minimap.feature = e.detail.features[0];
-            console.log(minimap.feature);
-            showMap();
-          }
-        });
-
-        // Add confirmation prompt to shipping address
-        const form = document.querySelector("form");
-        form.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const result = await mapboxsearch.confirmAddress(form, {
-            minimap: true,
-            skipConfirmModal: (feature) =>
-              ["exact", "high"].includes(
-                feature.properties.match_code.confidence
-              ),
-          });
-          if (result.type === "nochange") {
-            const selectedAddress = form.querySelector(
-              ".mapboxgl-ctrl-geocoder--input"
-            ).value;
-            console.log("Selected Address:", selectedAddress);
-            submitForm();
-          }
-        });
-      };
-    </script>
+    <div id="ticketModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-image-wrapper">
+          <img
+            src="/img/antman.jpg"
+            class="event-thumbnail"
+            alt="Haluk Levent Concert"
+          />
+        </div>
+        <h2 class="modal-event-name"></h2>
+        <p class="modal-date"></p>
+        <p class="modal-location"></p>
+        <p class="modal-description"></p>
+        <div class="ticket-buttons"></div>
+      </div>
+    </div>
 
     <footer>
       <p>&copy; 2024 MyFilmList</p>
     </footer>
+    <script src="/js/events.js"></script>
   </body>
 </html>

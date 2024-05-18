@@ -1,0 +1,444 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #222;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.input {
+  width: 600px;
+}
+
+.loading {
+  display: none;
+  /* Add your loading animation styles here */
+}
+
+header {
+  background-color: #111;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #ffcc00; /* Change to your preferred hover color */
+}
+
+main {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.button-group {
+  margin-bottom: 20px;
+}
+
+.button-group button {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.button-group button:hover {
+  background-color: yellow;
+  color: black;
+}
+
+.button-group button.selected {
+  background-color: yellow;
+  color: black;
+}
+
+.location-search {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input {
+  width: 400px;
+  color: white;
+}
+
+#location-search {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  flex: 1; /* Take remaining space */
+}
+
+.hide {
+  display: none;
+}
+
+#search-btn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+#event-cards {
+  display: flex;
+  flex-direction: horizontal;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.event-card {
+  width: calc(25% - 20px); /* Adjust width for 4 cards per row */
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.button-and-date {
+  display: flex;
+  justify-content: center;
+}
+
+/* General styling for select elements */
+select {
+  appearance: none; /* Remove default styling */
+  -webkit-appearance: none; /* For Safari */
+  -moz-appearance: none; /* For Firefox */
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 10px 40px 10px 15px;
+  font-size: 16px;
+  color: #495057;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.3s ease;
+  height: 42px; /* Ensure height matches button */
+  line-height: 1.2; /* Adjust line-height to match button */
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+/* Adding an icon to the dropdown */
+select::after {
+  content: "\25BC"; /* Unicode character for a downward triangle */
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Make sure the icon is not clickable */
+}
+
+/* Container to hold the select and the icon */
+.select-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Hover and focus states */
+select:hover,
+select:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+/* For browsers that do not support the appearance property */
+select::-ms-expand {
+  display: none; /* Hide the default dropdown arrow for IE */
+}
+
+/* Ensure consistent height for the find-state button */
+.find-events {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px; /* Adjust padding to match select */
+  margin: 0px 10px 10px 10px;
+  cursor: pointer;
+  height: 42px; /* Ensure height matches select */
+  font-size: 16px;
+  line-height: 1.2; /* Adjust line-height to match select */
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.find-events:hover {
+  background-color: #218838;
+}
+
+.create-event {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px; /* Adjust padding to match select */
+  margin: 0px 10px 10px 10px;
+  cursor: pointer;
+  height: 42px; /* Ensure height matches select */
+  font-size: 16px;
+  line-height: 1.2; /* Adjust line-height to match select */
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.create-event:hover {
+  background-color: #218838;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  width: 300px; /* Adjust width as needed */
+  background-color: #333;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 50px;
+}
+
+.event-card__image-wrapper {
+  overflow: hidden;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.event-card__image-wrapper img {
+  width: 100%;
+  height: 180px; /* Adjust height as needed */
+  object-fit: cover; /* Ensures image fills the container */
+}
+
+.event-card__content {
+  padding: 16px;
+}
+
+.event-card__content-top {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.event-card__title {
+  font-size: 20px;
+  margin: 0;
+  font-weight: bold;
+  color: #fff;
+}
+
+.event-card__date {
+  color: #999;
+  font-size: 14px;
+  margin: 0;
+}
+
+.event-card__location {
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+/* Modal styles */
+
+.see-more-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-top: 60px;
+}
+
+/* Hide the scrollbars */
+.modal-content {
+  background-color: #333;
+  margin: 5% auto;
+  padding: 20px;
+  width: 60%;
+  max-width: 400px; /* Smaller width */
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden; /* Hide scrollbars */
+}
+
+.modal-content::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.modal-content {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.see-more-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.see-more-btn:hover {
+  background-color: #218838;
+}
+
+.modal-image-wrapper {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.modal-image-wrapper img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.modal h2 {
+  margin-top: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.modal-date,
+.modal-location {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin: 5px 0;
+}
+
+.modal-description {
+  font-size: 16px;
+  color: white;
+  margin-top: 15px;
+  text-align: justify;
+}
+
+/* Hide scrollbars but enable scrolling */
+.modal-content {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 70vh; /* Smaller height */
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+
+.modal-content {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.ticket-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.ticket-info ul li {
+  margin: 10px 0;
+}
+
+.ticket-info ul li a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.ticket-info ul li a:hover {
+  color: #0056b3;
+}
+/* Ticket buttons */
+.ticket-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.ticket-buttons a {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.ticket-buttons a:hover {
+  background-color: #0056b3;
+}
+
+footer {
+  margin-top: 10px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}

@@ -111,6 +111,7 @@ main {
   flex-direction: horizontal;
   flex-wrap: wrap;
   justify-content: space-between;
+  height: 100vh;
 }
 
 .event-card {
@@ -147,6 +148,7 @@ select {
   line-height: 1.2; /* Adjust line-height to match button */
   display: inline-block;
   vertical-align: middle;
+  margin-right: 5px;
 }
 
 /* Adding an icon to the dropdown */
@@ -178,7 +180,7 @@ select::-ms-expand {
 }
 
 /* Ensure consistent height for the find-state button */
-.find-state {
+.find-events {
   background-color: #28a745;
   color: #fff;
   border: none;
@@ -193,9 +195,29 @@ select::-ms-expand {
   vertical-align: middle;
 }
 
-.find-state:hover {
+.find-events:hover {
   background-color: #218838;
 }
+
+.create-event {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px; /* Adjust padding to match select */
+  margin: 0px 10px 10px 10px;
+  cursor: pointer;
+  height: 42px; /* Ensure height matches select */
+  font-size: 16px;
+  line-height: 1.2; /* Adjust line-height to match select */
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.create-event:hover {
+  background-color: #218838;
+}
+
 .event-card {
   display: flex;
   flex-direction: column;
@@ -203,7 +225,7 @@ select::-ms-expand {
   background-color: #333;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 10px;
+  margin: 50px;
 }
 
 .event-card__image-wrapper {
@@ -409,7 +431,10 @@ select::-ms-expand {
 .ticket-buttons a:hover {
   background-color: #0056b3;
 }
+
 footer {
+  margin-top: 10px;
+  bottom: 0;
   left: 0;
   width: 100%;
   background-color: #333;

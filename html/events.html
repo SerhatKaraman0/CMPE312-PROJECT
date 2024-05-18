@@ -25,26 +25,31 @@
 
     <main>
       <div class="button-group">
-        <button>Conferences</button>
-        <button>Seminars</button>
-        <button>Networking Events</button>
-        <button>Company Parties</button>
-        <button>Product Launches</button>
-        <button>Corporate Events</button>
-        <button>Sporting Events</button>
-        <button>Team Building Events</button>
-        <button>Beer Festival</button>
-        <button>Charity Events</button>
-        <button>Fundraiser Events</button>
-        <button>Concerts</button>
-        <button>Festivals</button>
-        <button>Party</button>
-        <button>Fashion Events</button>
-        <button>Art Events</button>
+        <button data-event-type="conferences">Conferences</button>
+        <button data-event-type="seminars">Seminars</button>
+        <button data-event-type="networking events">Networking Events</button>
+        <button data-event-type="company parties">Company Parties</button>
+        <button data-event-type="product launches">Product Launches</button>
+        <button data-event-type="corporate events">Corporate Events</button>
+        <button data-event-type="sporting events">Sporting Events</button>
+        <button data-event-type="team building events">
+          Team Building Events
+        </button>
+        <button data-event-type="charity events">Charity Events</button>
+        <button data-event-type="fundraiser events">Fundraiser Events</button>
+        <button data-event-type="concerts">Concerts</button>
+        <button data-event-type="festivals">Festivals</button>
+        <button data-event-type="party">Party</button>
+        <button data-event-type="fashion events">Fashion Events</button>
+        <button data-event-type="art events">Art Events</button>
       </div>
       <div class="status"></div>
       <div class="button-and-date">
-        <button class="find-state">Find Events</button>
+        <button class="create-event">Create Event</button>
+        <span>or</span>
+        <button class="find-events">Find Events</button>
+
+        <!-- New button for creating events -->
 
         <select name="date" id="dates">
           <option value="today" selected>Today</option>
@@ -55,8 +60,14 @@
           <option value="month">This month</option>
           <option value="next_month">Next Month</option>
         </select>
+        <select name="sortby" id="sorting">
+          <option value="a-z">A-Z</option>
+          <option value="z-a">Z-A</option>
+          <option value="date" selected>Date</option>
+          <option value="rating">Rating</option>
+        </select>
       </div>
-
+      <h1 class="events-in-location-text"></h1>
       <div id="event-cards"></div>
     </main>
     <div id="ticketModal" class="modal">
@@ -76,7 +87,42 @@
         <div class="ticket-buttons"></div>
       </div>
     </div>
+    <div id="createEventModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeCreateEventModal()">&times;</span>
+        <h2>Create Event</h2>
+        <form id="createEventForm">
+          <label for="eventName">Event Name:</label>
+          <input type="text" id="eventName" name="eventName" required />
 
+          <label for="eventDate">Date:</label>
+          <input type="date" id="eventDate" name="eventDate" required />
+
+          <label for="eventTime">Time:</label>
+          <input type="time" id="eventTime" name="eventTime" required />
+
+          <label for="eventLocation">Location:</label>
+          <input type="text" id="eventLocation" name="eventLocation" required />
+
+          <label for="eventDescription">Description:</label>
+          <textarea
+            id="eventDescription"
+            name="eventDescription"
+            required
+          ></textarea>
+
+          <label for="eventTags">Tags:</label>
+          <input
+            type="text"
+            id="eventTags"
+            name="eventTags"
+            placeholder="comma-separated"
+          />
+
+          <button type="submit">Create Event</button>
+        </form>
+      </div>
+    </div>
     <footer>
       <p>&copy; 2024 MyFilmList</p>
     </footer>

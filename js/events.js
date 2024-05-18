@@ -24,7 +24,7 @@ function openModal(eventDetails) {
   var ticketSellers = document.querySelector(".ticket-buttons");
   var eventThumbnail = document.querySelector(".event-thumbnail");
 
-  eventName.innerHTML += `<a href=${eventDetails.link} style="color: white; text-decoration: none;">${eventDetails.name}</a>`;
+  eventName.innerHTML = `<a href=${eventDetails.link} style="color: white; text-decoration: none;">${eventDetails.name}</a>`;
   date.innerHTML = formatDateTime(eventDetails.start_time);
   location.innerHTML = eventDetails.venue.name;
   description.innerHTML = "Tags: ";
@@ -34,6 +34,7 @@ function openModal(eventDetails) {
       description.innerHTML += tag + " ";
     }
   }
+
   // Clear the ticket sellers content before adding new links
   ticketSellers.innerHTML = "";
 
@@ -46,6 +47,7 @@ function openModal(eventDetails) {
     // Handle the case where ticket_links is undefined or not an array
     console.error("No ticket links found for the event.");
   }
+
   var defaultImageSrc = "/img/default-event.png";
 
   if (eventDetails.thumbnail && eventDetails.thumbnail.trim() !== "") {
@@ -94,6 +96,7 @@ function createEventDiv(eventData) {
     // If thumbnail is missing or empty, use the default image source
     eventImg.src = defaultImageSrc;
   }
+
   eventCardContentDiv.classList.add("event-card__content");
   eventCardContentTopDiv.classList.add("event-card__content-top");
   eventCardContentTitle.classList.add("event-card__title");
@@ -119,16 +122,12 @@ function createEventDiv(eventData) {
 
   // Append children elements
   eventImgDiv.appendChild(eventImg);
-
   eventCardContentTopDiv.appendChild(eventCardContentTitle);
   eventCardContentTopDiv.appendChild(eventCardContentDate);
-
   eventCardContentBottomDiv.appendChild(eventCardContentBottomLocation);
-
   eventCardContentDiv.appendChild(eventCardContentTopDiv);
   eventCardContentDiv.appendChild(eventCardContentBottomDiv);
   eventCardContentDiv.appendChild(eventCardContentBottomButton);
-
   eventDiv.appendChild(eventImgDiv);
   eventDiv.appendChild(eventCardContentDiv);
 
@@ -140,7 +139,7 @@ async function fetchEventsFunc(userQuery, userDate) {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": "039f4362d8msh1e002813001473dp1ead56jsn7b66c36a0d8a",
+      "X-RapidAPI-Key": "a6cc142f64msh717235eb0600797p14895ajsn160776a45425",
       "X-RapidAPI-Host": "real-time-events-search.p.rapidapi.com",
     },
   };
@@ -152,46 +151,70 @@ async function fetchEventsFunc(userQuery, userDate) {
   url.searchParams.append("date", userDate);
   url.searchParams.append("start", "0");
 
-  return fetch(url, options)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok " + response.statusText);
-      }
-      return response.json();
-    })
-    .then((response) => {
-      return response.data;
-    })
-    .catch((error) => {
-      console.error(
-        "There has been a problem with your fetch operation:",
-        error
-      );
-    });
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error("There has been a problem with your fetch operation:", error);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const fetchEvents = (locationText) => {
-    var selectedDate = document.getElementById("dates");
-    fetchEventsFunc(`Events in ${locationText}`, `${selectedDate.value}`).then(
-      (events) =>
+  let selectedEventTypes = [];
+
+  const fetchEvents = (locationText, eventTypes) => {
+    const selectedDate = document.getElementById("dates").value;
+    const query = `Events in ${locationText} ${eventTypes.join(" ")}`;
+    const selectedSortingStyle = document.getElementById("sorting").value;
+
+    fetchEventsFunc(query, selectedDate).then((events) => {
+      if (events && Array.isArray(events)) {
+        // Clear existing events before adding new ones
+        const eventCardsContainer = document.getElementById("event-cards");
+        eventCardsContainer.innerHTML = "";
+
+        // Sort events based on the selected sorting style
+        if (selectedSortingStyle == "a-z") {
+          events.sort((a, b) => (a.name > b.name ? 1 : -1));
+        } else if (selectedSortingStyle == "z-a") {
+          events.sort((a, b) => (a.name > b.name ? -1 : 1));
+        } else if (selectedSortingStyle == "date") {
+          events.sort(
+            (a, b) => new Date(a.start_time) - new Date(b.start_time)
+          );
+        } else if (selectedSortingStyle == "rating") {
+          events.sort((a, b) => (a.venue.rating > b.venue.rating ? 1 : -1));
+        }
+
+        // Create event cards
+        const locationTextHtml = document.querySelector(
+          ".events-in-location-text"
+        );
+        locationTextHtml.innerHTML = "Events in " + locationText;
         events.forEach((eventDetail) => {
           createEventDiv(eventDetail);
-        })
-    );
+        });
+      } else {
+        console.error("No events found or data format is incorrect.");
+      }
+    });
   };
 
-  const findMyState = () => {
+  const findEventsButton = document.querySelector(".find-events");
+
+  findEventsButton.addEventListener("click", function () {
     const success = (position) => {
-      console.log(position);
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
 
-      const geoApiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longtitude=${longitude}&localityLanguage=en`;
+      const geoApiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
       fetch(geoApiUrl)
         .then((res) => res.json())
         .then((data) => {
-          const locationDiv = document.querySelector(".location");
           let locationText = "";
           if (data.city) {
             locationText += data.city;
@@ -204,8 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
             locationText += data.countryName;
           }
 
-          console.log(data);
-          fetchEvents(locationText); // Call fetchEvents with the locationText
+          fetchEvents(locationText, selectedEventTypes); // Pass selected event types
         })
         .catch((error) => {
           console.error("Error fetching location data:", error);
@@ -213,19 +235,72 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     navigator.geolocation.getCurrentPosition(success);
-  };
-
-  // Call findMyState function when DOM content is loaded
-  findMyState();
+  });
 
   // Add click event listener to the button group
   const buttons = document.querySelectorAll(".button-group button");
   buttons.forEach((button) => {
     button.addEventListener("click", function () {
       this.classList.toggle("selected");
+
+      const eventType = this.dataset.eventType;
+      if (this.classList.contains("selected")) {
+        selectedEventTypes.push(eventType);
+      } else {
+        const index = selectedEventTypes.indexOf(eventType);
+        if (index > -1) {
+          selectedEventTypes.splice(index, 1);
+        }
+      }
     });
   });
-
-  // Add click event listener to the find-state button
-  document.querySelector(".find-state").addEventListener("click", findMyState);
 });
+
+// Event creation modal functions
+const createEventButton = document.querySelector(".create-event");
+const createEventModal = document.getElementById("createEventModal");
+const createEventForm = document.getElementById("createEventForm");
+
+createEventButton.addEventListener("click", function () {
+  createEventModal.style.display = "block";
+});
+
+function closeCreateEventModal() {
+  createEventModal.style.display = "none";
+}
+
+createEventForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const eventName = document.getElementById("eventName").value;
+  const eventDate = document.getElementById("eventDate").value;
+  const eventTime = document.getElementById("eventTime").value;
+  const eventLocation = document.getElementById("eventLocation").value;
+  const eventDescription = document.getElementById("eventDescription").value;
+  const eventTags = document.getElementById("eventTags").value.split(",");
+
+  const newEvent = {
+    name: eventName,
+    date: eventDate,
+    time: eventTime,
+    location: eventLocation,
+    description: eventDescription,
+    tags: eventTags,
+  };
+
+  // Function to handle creating the event (e.g., sending to a server)
+  createNewEvent(newEvent);
+
+  closeCreateEventModal();
+});
+
+function createNewEvent(event) {
+  console.log("Event created:", event);
+  // You can add code here to send the event data to a server or update the UI
+}
+
+window.onclick = function (event) {
+  if (event.target == createEventModal) {
+    closeCreateEventModal();
+  }
+};

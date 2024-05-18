@@ -48,3 +48,12 @@ footer {
   text-align: center;
   padding: 1rem;
 }
+
+
+input{
+  background-color: #111;
+  border-radius: 3px;
+  border: 0;
+  
+}
+

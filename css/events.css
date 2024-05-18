@@ -111,7 +111,7 @@ main {
   flex-direction: horizontal;
   flex-wrap: wrap;
   justify-content: space-between;
-  height: 100vh;
+
 }
 
 .event-card {

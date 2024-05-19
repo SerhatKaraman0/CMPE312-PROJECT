@@ -187,3 +187,12 @@ h2{
   
 }
 
+.forget a{
+  color: white;
+  text-decoration: none;
+}
+
+
+.forget a:hover:active{
+  color: #ffcc00
+}

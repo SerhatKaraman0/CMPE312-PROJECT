@@ -37,6 +37,7 @@ nav ul li a:hover {
 
 main {
   padding: 20px;
+  min-height: 100vh;
 }
 footer {
   position: fixed;
@@ -49,7 +50,7 @@ footer {
   padding: 1rem;
 }
 
-section{
+section {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,7 +58,7 @@ section{
   background-color: none;
 }
 
-.form-box{
+.form-box {
   position: relative;
   width: 400px;
   height: 450px;
@@ -68,11 +69,9 @@ section{
   border: 2px solid #ffcc00;
   display: flex;
   background: transparent;
- 
-  
 }
 
-h2{
+h2 {
   font-size: 2em;
   color: white;
   text-align: center;
@@ -86,15 +85,14 @@ h2{
   color: white;
 }
 
-.inputbox{
+.inputbox {
   position: relative;
   margin: 30px 0;
   width: 310px;
   border-bottom: 2px solid #fff;
-
 }
 
-.inputbox label{
+.inputbox label {
   position: absolute;
   top: 50%;
   left: 5px;
@@ -111,24 +109,20 @@ h2{
   border: none;
   outline: none;
   font-size: 1em;
-  padding:0 35px 0 5px;
+  padding: 0 35px 0 5px;
 }
 
-.remember a:hover{
+.remember a:hover {
   text-decoration: underline;
   color: white;
-  
-
 }
 
 .remember {
   text-align: center;
   color: white;
-  
-
 }
 
-.Login{
+.Login {
   width: 150px;
   height: 40px;
   border-radius: 40px;
@@ -139,11 +133,10 @@ h2{
   font-size: 1em;
   margin-left: 75px;
   margin-top: 20px;
-  
-
 }
 
-.sign2, .log2{
+.sign2,
+.log2 {
   width: 140px;
   height: 40px;
   border-radius: 40px;
@@ -154,17 +147,17 @@ h2{
   font-size: 1em;
   justify-content: center;
   margin-left: 10px;
-  
 }
 
-.sign2:hover, .log2:hover, .Login:hover{
+.sign2:hover,
+.log2:hover,
+.Login:hover {
   opacity: 0.7;
   transition: opacity 0.2s;
 }
 
-
-.Login:hover:active{
-  background-color:#ffcc00 ;
+.Login:hover:active {
+  background-color: #ffcc00;
 }
 
 /* Toggled button styles */
@@ -172,27 +165,23 @@ h2{
   background-color: #ffcc00; /* Toggled color */
 }
 
-
-
-.register{
+.register {
   text-align: center;
 }
-.register :hover{
+.register :hover {
   color: white;
 }
 
-.forget{
+.forget {
   text-align: center;
   margin-top: 10px;
-  
 }
 
-.forget a{
+.forget a {
   color: white;
   text-decoration: none;
 }
 
-
-.forget a:hover:active{
-  color: #ffcc00
+.forget a:hover:active {
+  color: #ffcc00;
 }

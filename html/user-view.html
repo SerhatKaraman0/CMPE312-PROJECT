@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MyFilmList</title>
+    <title>MyFilmList - Home</title>
     <link rel="stylesheet" href="/css/user-view.css" />
   </head>
   <body>
@@ -17,15 +17,50 @@
             >
           </li>
           <li><a href="/html/lists.html" target="_blank">My Lists</a></li>
-          <li>
-            <a href="/html/events.html" target="_blank">Events</a>
-          </li>
+          <li><a href="/html/events.html" target="_blank">Events</a></li>
           <li><a href="/html/blog.html" target="_blank">Blog</a></li>
-          <li><a href="/html/friends.html" target="_blank">Friends</a></li>
+          <li><a href="/html/feed.html" target="_blank">Friends</a></li>
         </ul>
       </nav>
     </header>
-    <main><h1>feed</h1></main>
+
+    <main class="container">
+      <section class="welcome">
+        <h2>Welcome to MyFilmList</h2>
+        <p>Discover, organize, and share your favorite movies.</p>
+        <button class="recommend-button">Recommend Me Something</button>
+      </section>
+      <section class="main-content">
+        <!-- Post cards -->
+        <div class="post-card">
+          <h3>Post Title 1</h3>
+          <p>Post content summary...</p>
+          <a href="#">Read more</a>
+        </div>
+        <div class="post-card">
+          <h3>Post Title 2</h3>
+          <p>Post content summary...</p>
+          <a href="#">Read more</a>
+        </div>
+        <div class="post-card">
+          <h3>Post Title 3</h3>
+          <p>Post content summary...</p>
+          <a href="#">Read more</a>
+        </div>
+        <!-- Add more post cards as needed -->
+      </section>
+
+      <aside class="sidebar">
+        <h3>Latest News</h3>
+        <ul class="news-list">
+          <li><a href="#">News item 1</a></li>
+          <li><a href="#">News item 2</a></li>
+          <li><a href="#">News item 3</a></li>
+          <li><a href="#">News item 4</a></li>
+          <li><a href="#">News item 5</a></li>
+        </ul>
+      </aside>
+    </main>
 
     <footer>
       <p>&copy; 2024 MyFilmList</p>

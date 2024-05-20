@@ -35,9 +35,72 @@ nav ul li a:hover {
   color: #ffcc00; /* Change to your preferred hover color */
 }
 
-main {
-  padding: 20px;
+.container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 1em;
+  padding: 1em;
 }
+
+.welcome {
+  grid-column: span 2;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card {
+  background-color: #333;
+  border: 1px solid #ddd;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+.post-card h3 {
+  margin-top: 0;
+}
+
+.post-card a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.post-card a:hover {
+  text-decoration: underline;
+}
+
+.sidebar {
+  background-color: #333;
+  padding: 1em;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+}
+
+.news-list {
+  background-color: #222;
+  list-style-type: none;
+  padding: 0;
+}
+
+.news-list li {
+  margin-bottom: 0.5em;
+}
+
+.news-list li a {
+  color: white;
+  text-decoration: none;
+}
+
+.news-list li a:hover {
+  text-decoration: underline;
+}
+
 footer {
   position: fixed;
   bottom: 0;

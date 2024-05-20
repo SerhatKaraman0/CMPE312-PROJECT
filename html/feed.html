@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Tracker Feed</title>
+    <link rel="stylesheet" href="/css/feed.css" />
+  </head>
+  <body>
+    <header>
+      <h1>MyFilmList</h1>
+      <nav>
+        <ul>
+          <li><a href="/html/user-view.html">Home</a></li>
+          <li><a href="/html/lists.html">My Lists</a></li>
+          <li><a href="/html/events.html">Events</a></li>
+          <li><a href="/html/blog.html">Blog</a></li>
+          <li><a href="/html/feed.html" style="color: yellow">Friends</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <div class="feed-container">
+        <div class="post">
+          <div class="post-header">
+            <a href="user-profile1.html" class="avatar-link">
+              <img
+                src="/img/default_profile_pic.png"
+                alt="User Avatar"
+                class="avatar"
+              />
+            </a>
+            <div class="user-info">
+              <a href="user-profile1.html"><h4>John Doe</h4></a>
+              <p>@johndoe</p>
+            </div>
+          </div>
+          <div class="post-content">
+            <p>
+              Added <a href="movie1.html">The Shawshank Redemption</a> to their
+              watchlist.
+            </p>
+          </div>
+          <div class="post-footer">
+            <button class="like-button" onclick="likePost(this)">Like</button>
+            <span class="like-count">0 Likes</span>
+          </div>
+        </div>
+
+        <div class="post">
+          <div class="post-header">
+            <a href="user-profile2.html" class="avatar-link">
+              <img
+                src="/img/default_profile_pic.png"
+                alt="User Avatar"
+                class="avatar"
+              />
+            </a>
+            <div class="user-info">
+              <a href="user-profile2.html"><h4>Jane Smith</h4></a>
+              <p>@janesmith</p>
+            </div>
+          </div>
+          <div class="post-content">
+            <p>
+              Reviewed <a href="movie2.html">Inception</a>: "A mind-bending
+              masterpiece!"
+            </p>
+            <p>Rating: ⭐⭐⭐⭐⭐</p>
+          </div>
+          <div class="post-footer">
+            <button class="like-button" onclick="likePost(this)">Like</button>
+            <span class="like-count">0 Likes</span>
+          </div>
+        </div>
+
+        <div class="post">
+          <div class="post-header">
+            <a href="user-profile3.html" class="avatar-link">
+              <img
+                src="/img/default_profile_pic.png"
+                alt="User Avatar"
+                class="avatar"
+              />
+            </a>
+            <div class="user-info">
+              <a href="user-profile3.html"><h4>Mike Brown</h4></a>
+              <p>@mikebrown</p>
+            </div>
+          </div>
+          <div class="post-content">
+            <p>Rated <a href="movie3.html">The Dark Knight</a>: ⭐⭐⭐⭐⭐</p>
+          </div>
+          <div class="post-footer">
+            <button class="like-button" onclick="likePost(this)">Like</button>
+            <span class="like-count">0 Likes</span>
+          </div>
+        </div>
+      </div>
+      <div class="friends-container">
+        <h3>Friends</h3>
+        <div class="friend">
+          <a href="user-profile4.html" class="avatar-link">
+            <img
+              src="/img/default_profile_pic.png"
+              alt="User Avatar"
+              class="avatar"
+            />
+          </a>
+          <div class="friend-info">
+            <a href="user-profile4.html"><h4>Anna White</h4></a>
+            <p>Watching <a href="movie4.html">Titanic</a></p>
+          </div>
+        </div>
+
+        <div class="friend">
+          <a href="user-profile5.html" class="avatar-link">
+            <img
+              src="/img/default_profile_pic.png"
+              alt="User Avatar"
+              class="avatar"
+            />
+          </a>
+          <div class="friend-info">
+            <a href="user-profile5.html"><h4>Chris Green</h4></a>
+            <p>Just watched <a href="movie5.html">Avatar</a></p>
+          </div>
+        </div>
+
+        <div class="friend">
+          <a href="user-profile6.html" class="avatar-link">
+            <img
+              src="/img/default_profile_pic.png"
+              alt="User Avatar"
+              class="avatar"
+            />
+          </a>
+          <div class="friend-info">
+            <a href="user-profile6.html"><h4>Lisa Blue</h4></a>
+          </div>
+        </div>
+
+        <div class="friend">
+          <a href="user-profile7.html" class="avatar-link">
+            <img
+              src="/img/default_profile_pic.png"
+              alt="User Avatar"
+              class="avatar"
+            />
+          </a>
+          <div class="friend-info">
+            <a href="user-profile7.html"><h4>Tom Red</h4></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/feed.js"></script>
+  </body>
+</html>

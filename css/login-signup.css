@@ -194,5 +194,10 @@ h2{
 
 
 .forget a:hover:active{
+  color: #ffcc00;
+}
+
+
+.forget a:hover{
   color: #ffcc00
 }

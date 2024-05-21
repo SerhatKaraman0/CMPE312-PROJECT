@@ -28,7 +28,42 @@
       <section class="welcome">
         <h2>Welcome to MyFilmList</h2>
         <p>Discover, organize, and share your favorite movies.</p>
-        <button class="recommend-button">Recommend Me Something</button>
+        <button class="recommend-button" onclick="toggleRecommendSection()">
+          Recommend Me Something
+        </button>
+        <section id="recommend-section" class="recommend-section">
+          <h3>Let's Find You a Movie!</h3>
+          <div class="question">
+            <p>How do you feel today?</p>
+            <div class="button-group">
+              <button onclick="selectMood('happy')">Happy</button>
+              <button onclick="selectMood('moody')">Moody</button>
+              <button onclick="selectMood('sad')">Sad</button>
+              <button onclick="selectMood('tense')">Tense</button>
+              <button onclick="selectMood('romantic')">Romantic</button>
+              <button onclick="selectMood('fearful')">Fearful</button>
+              <button onclick="selectMood('emotional')">Emotional</button>
+              <button onclick="selectMood('confident')">Confident</button>
+              <button onclick="selectMood('calm')">Calm</button>
+              <button onclick="selectMood('optimistic')">Optimistic</button>
+              <button onclick="selectMood('pessimistic')">Pessimistic</button>
+            </div>
+            <p>What's your favourite genre?</p>
+            <div class="button-group">
+              <button onclick="selectMood('action')">Action</button>
+              <button onclick="selectMood('horror')">Horror</button>
+              <button onclick="selectMood('thriller')">Thriller</button>
+              <button onclick="selectMood('crime')">Crime</button>
+              <button onclick="selectMood('drama')">Drama</button>
+              <button onclick="selectMood('documentary')">Documentary</button>
+              <button onclick="selectMood('war')">War</button>
+              <button onclick="selectMood('emotional')">Fantasy</button>
+              <button onclick="selectMood('art')">Art</button>
+              <button onclick="selectMood('animation')">Animation</button>
+            </div>
+          </div>
+          <!-- Add more questions as needed -->
+        </section>
       </section>
       <section class="main-content">
         <!-- Post cards -->

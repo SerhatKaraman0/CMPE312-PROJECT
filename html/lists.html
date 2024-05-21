@@ -1,66 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyFilmList</title>
-    <link rel="stylesheet" href="/css/lists.css" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="/css/lists.css">
+</head>
+<body>
     <header>
-      <h1>MyFilmList</h1>
-      <nav>
-        <ul>
-          <li><a href="/html/user-view.html" target="_blank"">Home</a></li>
-          <li><a href="/html/lists.html" target="_blank" style="color: yellow;">My Lists</a></li>
-          <li>
-            <a href="/html/events.html" target="_blank">Events</a>
-          </li>
-          <li><a href="/html/blog.html" target="_blank">Blog</a></li>
-          <li><a href="/html/feed.html" target="_blank">Friends</a></li>
-        </ul>
-      </nav>
+        <h1>MyFilmList</h1>
+        <nav>
+            <ul>
+                <li><a href="/html/user-view.html" target="_blank">Home</a></li>
+                <li><a href="/html/lists.html" target="_blank" style="color: yellow;">My Lists</a></li>
+                <li><a href="/html/events.html" target="_blank">Events</a></li>
+                <li><a href="/html/blog.html" target="_blank">Blog</a></li>
+                <li><a href="/html/feed.html" target="_blank">Friends</a></li>
+            </ul>
+        </nav>
     </header>
 
-   <main>
-    <div class="api-response"></div>
-    
-    <section>
-      <div>
-      <p>New List</p>
-      <input placeholder="List Name">
+    <main>
+        <section class="new-list">
+            <h2>New List</h2>
+            <div class="form-group">
+                <label for="list-name">Name</label>
+                <input id="list-name" type="text" placeholder="List Name">
+            </div>
+            <div class="form-group">
+                <label for="tags">Tags</label>
+                <input id="tags" type="text" placeholder="eg. top 10">
+            </div>
+            <div class="form-group">
+                <label for="who-can-view">Who can view</label>
+                <select id="who-can-view">
+                    <option value="Public">Public</option>
+                    <option value="Private">Private</option>
+                    <option value="Friends">Friends</option>
+                    <option value="Share link">Share link</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="buttons-group">
+                    <button class="add-film">Add a Film</button> <label for="file-upload" class="import">Import</label>
+                    <input id="file-upload" type="file"/>
+                    
+                </div>
+                <input class="add-film-input" type="text" placeholder="Enter name of film...">
+            </div>
+            <div class="buttons">
+                <button class="cancel">Cancel</button>
+                <button class="save">Save</button>
+            </div>
+            <div class="list-status">
+                <p>Your list is empty. Add films using the field above, or from the links on a film poster or page.</p>
+            </div>
+        </section>
+    </main>
 
-    </div class="Tags">
-      <p>Tags</p>
-      <input class="ViewList">
-      <p>Who can view</p>
-      </div>
-      
-      <select>
-        <option value="Public">Public</option>
-        <option value="Private">Private</option>
-        <option value="Friends">Friends</option>
-        <option value="Share link">Share link</option>   
-     </select>
-    
-      <div class="Description">
-        <p>Description</p>
-        
-        <textarea style="background-color: #111;
-         color: white;"></textarea>
-      
-      </div>
-
-      <div class="add-film">
-        <button>Add Film</button><input class="add-film-input" placeholder="Movie Name"><span> or </span><input type="file">
-       </div>
-
-    </section>
-
-   </main>
     <footer>
-      <p>&copy; 2024 MyFilmList</p>
+        <p>&copy; 2024 MyFilmList</p>
     </footer>
+
     <script src="/js/lists.js"></script>
-  </body>
+</body>
 </html>

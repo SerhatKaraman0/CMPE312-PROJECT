@@ -38,8 +38,8 @@ nav ul li a:hover {
 main {
   padding: 20px;
 }
+
 footer {
-  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -49,11 +49,133 @@ footer {
   padding: 1rem;
 }
 
-
-input{
+.new-list {
   background-color: #111;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.new-list h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #222;
+  color: white;
+  border: 1px solid #333;
   border-radius: 3px;
-  border: 0;
   
 }
 
+textarea{
+  width: 98%;
+}
+
+input[type="file"]{
+  display: none;
+}
+
+#list-name, #tags, .add-film-input{
+  margin-left: -10px;
+}
+
+.add-film{
+  margin-bottom: 10px;
+}
+
+
+textarea {
+  height: 100px;
+}
+
+.add-film {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  
+}
+
+.add-film:hover {
+  background-color: #218838;
+}
+
+.import {
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  width: 65px;
+  height: 15px;
+  
+  
+  
+}
+
+.import:hover {
+  background-color: #138496;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.buttons-group{
+  display: flex;
+
+  margin-top: 20px;
+}
+
+.cancel {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.cancel:hover {
+  background-color: #c82333;
+}
+
+.save {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.save:hover {
+  background-color: #218838;
+}
+
+.list-status {
+  text-align: center;
+  margin-top: 20px;
+}

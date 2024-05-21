@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyFilmList</title>
+    <link rel="stylesheet" href="/css/home.css" />
+  </head>
+  <body>
+    <header>
+      <h1>MyFilmList</h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="/html/user-view.html" target="_blank" style="color: yellow"
+              >Home</a
+            >
+          </li>
+          <li><a href="/html/lists.html" target="_blank">My Lists</a></li>
+          <li>
+            <a href="/html/events.html" target="_blank">Events</a>
+          </li>
+          <li><a href="/html/blog.html" target="_blank">Blog</a></li>
+          <li><a href="/html/feed.html" target="_blank">Friends</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="get-started">
+        <h2>Get Started</h2>
+        <p>
+          Track the films you've watched, create watchlists, and read reviews.
+        </p>
+        <a
+          href="/html/login-signup-page.html"
+          target="_blank"
+          class="btn-signup"
+          >Sign Up</a
+        >
+      </section>
+      <button id="movies-btn">Movies</button>
+      <button id="series-btn">TV Series</button>
+      <section class="movies-section">
+        <section class="film-list" id="movies-close">
+          <h2>Upcoming Movies</h2>
+          <div class="film-row" id="film-row-upcoming"></div>
+        </section>
+        <section class="film-list">
+          <h2>Now Playing</h2>
+          <div class="film-row" id="film-row"></div>
+        </section>
+        <section class="film-list">
+          <h2>Popular</h2>
+          <div class="film-row" id="film-row-popular"></div>
+        </section>
+        <section class="film-list">
+          <h2>Top Rated</h2>
+          <div class="film-row" id="film-row-top-rated"></div>
+        </section>
+      </section>
+
+      <section class="series-section">
+        <section class="film-list" id="series-close">
+          <h2>Airing Today</h2>
+          <div class="film-row" id="series-row-airing-today"></div>
+        </section>
+        <section class="film-list">
+          <h2>On The Air</h2>
+          <div class="film-row" id="series-row-on-the-air"></div>
+        </section>
+        <section class="film-list">
+          <h2>Popular</h2>
+          <div class="film-row" id="series-row-popular"></div>
+        </section>
+        <section class="film-list">
+          <h2>Top Rated</h2>
+          <div class="film-row" id="series-row-top-rated"></div>
+        </section>
+      </section>
+
+      <section>
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">Film Title</h2>
+            <div class="video-container">
+              <!-- Embedded YouTube video for trailer -->
+              <iframe
+                id="trailer-video"
+                width="560"
+                height="315"
+                src="https://www.youtube.com/watch?v=IE8-izIba40"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <p><strong>Year:</strong> <span id="modal-year">Year</span></p>
+            <p>
+              <strong>Crew:</strong>
+              <span id="modal-crew">Director</span>
+            </p>
+            <p>
+              <strong>Genres:</strong>
+              <span id="modal-genres">Genre</span>
+            </p>
+            <p>
+              <strong>Ratings:</strong> <span id="modal-ratings">Ratings</span>
+            </p>
+            <p>
+              <strong>Description:</strong>
+              <span id="modal-description">Description</span>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2024 MyFilmList</p>
+    </footer>
+    <script src="/js/home.js"></script>
+  </body>
+</html>

@@ -191,10 +191,9 @@ function openSeriesModal(series) {
   });
 
   trailerVideoPromise.then((trailerVideoID) => {
-    if (trailerVideoID){
+    if (trailerVideoID) {
       trailerVideo.src = "https://www.youtube.com/embed/" + trailerVideoID[0];
     }
-    
   });
 
   title.innerHTML = series.name;

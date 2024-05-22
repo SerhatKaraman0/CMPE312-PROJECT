@@ -36,37 +36,58 @@
           <div class="question">
             <p>How do you feel today?</p>
             <div class="button-group">
-              <button onclick="selectMood('happy')">Happy</button>
-              <button onclick="selectMood('moody')">Moody</button>
-              <button onclick="selectMood('sad')">Sad</button>
-              <button onclick="selectMood('tense')">Tense</button>
-              <button onclick="selectMood('romantic')">Romantic</button>
-              <button onclick="selectMood('fearful')">Fearful</button>
-              <button onclick="selectMood('emotional')">Emotional</button>
-              <button onclick="selectMood('confident')">Confident</button>
-              <button onclick="selectMood('calm')">Calm</button>
-              <button onclick="selectMood('optimistic')">Optimistic</button>
-              <button onclick="selectMood('pessimistic')">Pessimistic</button>
+              <button data-type="mood">Happy</button>
+              <button data-type="mood">Moody</button>
+              <button data-type="mood">Sad</button>
+              <button data-type="mood">Tense</button>
+              <button data-type="mood">Romantic</button>
+              <button data-type="mood">Fearful</button>
+              <button data-type="mood">Emotional</button>
+              <button data-type="mood">Confident</button>
+              <button data-type="mood">Calm</button>
+              <button data-type="mood">Optimistic</button>
+              <button data-type="mood">Pessimistic</button>
             </div>
             <p>What's your favourite genre?</p>
             <div class="button-group">
-              <button onclick="selectMood('action')">Action</button>
-              <button onclick="selectMood('horror')">Horror</button>
-              <button onclick="selectMood('thriller')">Thriller</button>
-              <button onclick="selectMood('crime')">Crime</button>
-              <button onclick="selectMood('drama')">Drama</button>
-              <button onclick="selectMood('documentary')">Documentary</button>
-              <button onclick="selectMood('war')">War</button>
-              <button onclick="selectMood('emotional')">Fantasy</button>
-              <button onclick="selectMood('art')">Art</button>
-              <button onclick="selectMood('animation')">Animation</button>
+              <button data-type="genre">Action</button>
+              <button data-type="genre">Horror</button>
+              <button data-type="genre">Thriller</button>
+              <button data-type="genre">Crime</button>
+              <button data-type="genre">Drama</button>
+              <button data-type="genre">Documentary</button>
+              <button data-type="genre">War</button>
+              <button data-type="genre">Fantasy</button>
+              <button data-type="genre">Art</button>
+              <button data-type="genre">Animation</button>
+              <button data-type="genre">Romantic Comedy</button>
+            </div>
+            <p>Length preference?</p>
+            <div class="button-group">
+              <button data-type="length">Short</button>
+              <button data-type="length">Medium</button>
+              <button data-type="length">Large</button>
             </div>
           </div>
-          <!-- Add more questions as needed -->
+          <section class="buttons">
+            <div>
+              <button
+                class="recommend-based-on-preference"
+                onclick="recommendMovies()"
+              >
+                Recommend in My Style
+              </button>
+              <button class="recommend-random">Random Recommend</button>
+            </div>
+          </section>
+          <section class="film-list" id="film-list">
+            <h3>Recommendations</h3>
+            <div class="film-list-container"></div>
+          </section>
         </section>
       </section>
+
       <section class="main-content">
-        <!-- Post cards -->
         <div class="post-card">
           <h3>Post Title 1</h3>
           <p>Post content summary...</p>
@@ -82,7 +103,6 @@
           <p>Post content summary...</p>
           <a href="#">Read more</a>
         </div>
-        <!-- Add more post cards as needed -->
       </section>
 
       <aside class="sidebar">
@@ -100,6 +120,45 @@
     <footer>
       <p>&copy; 2024 MyFilmList</p>
     </footer>
+
+    <!-- Modal Structure -->
+
+    <section>
+      <div id="movieModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <h2 id="modal-title">Film Title</h2>
+          <div class="video-container">
+            <!-- Embedded YouTube video for trailer -->
+            <iframe
+              id="trailer-video"
+              width="560"
+              height="315"
+              src="https://www.youtube.com/watch?v=IE8-izIba40"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p><strong>Year:</strong> <span id="modal-year">Year</span></p>
+          <p>
+            <strong>Crew:</strong>
+            <span id="modal-crew">Director</span>
+          </p>
+          <p>
+            <strong>Genres:</strong>
+            <span id="modal-genres">Genre</span>
+          </p>
+          <p>
+            <strong>Ratings:</strong> <span id="modal-ratings">Ratings</span>
+          </p>
+          <p>
+            <strong>Description:</strong>
+            <span id="modal-description">Description</span>
+          </p>
+        </div>
+      </div>
+    </section>
     <script src="/js/user-view.js"></script>
   </body>
 </html>

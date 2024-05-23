@@ -215,20 +215,58 @@ async function aiRequest() {
     return null;
   }
 }
-function createMovieDiv(movieData, filmListContainer) {
+
+async function aiRequestRandomMovies() {
+  const message = `Can you recommend 5 movies also can you give the recommendations in the form of json which will be like {'movie_name': 'reason'} reason is the sentence which explains why you recommend this movie. only give json object`;
+
+  const url = "https://open-ai21.p.rapidapi.com/chatgpt";
+  const options = {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      "X-RapidAPI-Key": "a6cc142f64msh717235eb0600797p14895ajsn160776a45425",
+      "X-RapidAPI-Host": "open-ai21.p.rapidapi.com",
+    },
+    body: JSON.stringify({
+      messages: [
+        {
+          role: "user",
+          content: message,
+        },
+      ],
+      web_access: false,
+    }),
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    const parsedData = JSON.parse(data.result);
+    console.log(parsedData);
+
+    displayRecommendations(parsedData);
+    return parsedData;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+}
+
+function createMovieDiv(movieData, filmListContainer, reason) {
   // Create new elements
   const movieDiv = document.createElement("div");
   const image = document.createElement("img");
   const title = document.createElement("h4");
   const description = document.createElement("p");
+  const reasonParagraph = document.createElement("p");
   const seeMoreButton = document.createElement("button");
-
+  const addToListsButton = document.createElement("button");
   // Set attributes and text content
   movieDiv.classList.add("movie-card");
   image.src = `https://image.tmdb.org/t/p/original/${movieData.poster_path}`;
   image.alt = `${movieData.title} Poster`;
   title.textContent = movieData.title;
-  description.textContent = `Why we selected this movie for you: ${movieData.overview}`;
+  reasonParagraph.textContent = `Why we selected this movie for you: ${reason}`;
   seeMoreButton.textContent = "See More";
   seeMoreButton.classList.add("see-more-btn");
   seeMoreButton.onclick = function () {
@@ -239,6 +277,7 @@ function createMovieDiv(movieData, filmListContainer) {
   movieDiv.appendChild(image);
   movieDiv.appendChild(title);
   movieDiv.appendChild(description);
+  movieDiv.appendChild(reasonParagraph);
   movieDiv.appendChild(seeMoreButton);
 
   // Append movieDiv to filmListContainer
@@ -255,7 +294,7 @@ async function displayRecommendations(recommendations) {
       try {
         const movieData = await searchMovie(movieName).then((data) => data[0]);
         if (movieData) {
-          createMovieDiv(movieData, filmListContainer); // Pass movieData directly
+          createMovieDiv(movieData, filmListContainer, reason);
         } else {
           console.error(`Movie data not found for ${movieName}`);
         }
@@ -274,6 +313,18 @@ async function recommendMovies() {
   }
 }
 
+async function randomRecommendMovies() {
+  const data = await aiRequestRandomMovies();
+  if (data) {
+    const filmListSection = document.getElementById("film-list");
+    filmListSection.style.display = "block";
+  }
+}
+
 document
   .querySelector(".recommend-based-on-preference")
   .addEventListener("click", recommendMovies);
+
+document
+  .querySelector(".recommend-random")
+  .addEventListener("click", randomRecommendMovies);

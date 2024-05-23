@@ -155,6 +155,7 @@ nav ul li a:hover {
   gap: 20px; /* Adjust the gap between movie cards */
   padding: 10px; /* Add padding for better appearance */
   margin-bottom: 20px; /* Add some space at the bottom */
+  justify-content: center;
 }
 
 .film-list-item {

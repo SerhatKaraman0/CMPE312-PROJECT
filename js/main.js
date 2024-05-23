@@ -191,10 +191,9 @@ function openSeriesModal(series) {
   });
 
   trailerVideoPromise.then((trailerVideoID) => {
-    if (trailerVideoID){
+    if (trailerVideoID) {
       trailerVideo.src = "https://www.youtube.com/embed/" + trailerVideoID[0];
     }
-    
   });
 
   title.innerHTML = series.name;
@@ -474,7 +473,7 @@ fetchMovieData()
   .then((movies) => {
     movies.forEach((movie) => {
       const movieDiv1 = createMovieDiv(movie);
-      appendMovieDiv(movieDiv1, "film-row");
+      appendMovieDiv(movieDiv1, "film-row-index");
     });
   })
   .catch((error) => {
@@ -485,8 +484,7 @@ fetchUpcomingMovieData()
   .then((movies) => {
     movies.forEach((movie) => {
       const movieDiv2 = createMovieDiv(movie);
-      console.log(movie.title);
-      appendMovieDiv(movieDiv2, "film-row-upcoming");
+      appendMovieDiv(movieDiv2, "film-row-upcoming-index");
     });
   })
   .catch((error) => {
@@ -497,7 +495,7 @@ fetchTopRatedMovieData()
   .then((movies) => {
     movies.forEach((movie) => {
       const movieDiv3 = createMovieDiv(movie);
-      appendMovieDiv(movieDiv3, "film-row-top-rated");
+      appendMovieDiv(movieDiv3, "film-row-top-rated-index");
     });
   })
   .catch((error) => {
@@ -508,7 +506,7 @@ fetchPopularMovieData()
   .then((movies) => {
     movies.forEach((movie) => {
       const movieDiv4 = createMovieDiv(movie);
-      appendMovieDiv(movieDiv4, "film-row-popular");
+      appendMovieDiv(movieDiv4, "film-row-popular-index");
     });
   })
   .catch((error) => {
@@ -519,7 +517,7 @@ fetchSeriesData()
   .then((series) => {
     series.forEach((serie) => {
       const serieDiv1 = createSeriesDiv(serie);
-      appendMovieDiv(serieDiv1, "series-row-airing-today");
+      appendMovieDiv(serieDiv1, "series-row-airing-today-index");
     });
   })
   .catch((error) => {
@@ -530,7 +528,7 @@ fetchOnTheAirSeriesData()
   .then((series) => {
     series.forEach((serie) => {
       const serieDiv2 = createSeriesDiv(serie);
-      appendMovieDiv(serieDiv2, "series-row-on-the-air");
+      appendMovieDiv(serieDiv2, "series-row-on-the-air-index");
     });
   })
   .catch((error) => {
@@ -541,7 +539,7 @@ fetchPopularSeriesData()
   .then((series) => {
     series.forEach((serie) => {
       const serieDiv3 = createSeriesDiv(serie);
-      appendMovieDiv(serieDiv3, "series-row-top-rated");
+      appendMovieDiv(serieDiv3, "series-row-top-rated-index");
     });
   })
   .catch((error) => {
@@ -552,7 +550,7 @@ fetchTopRatedSeriesData()
   .then((series) => {
     series.forEach((serie) => {
       const serieDiv4 = createSeriesDiv(serie);
-      appendMovieDiv(serieDiv4, "series-row-popular");
+      appendMovieDiv(serieDiv4, "series-row-popular-index");
     });
   })
   .catch((error) => {
@@ -562,8 +560,8 @@ fetchTopRatedSeriesData()
 document.addEventListener("DOMContentLoaded", function () {
   const moviesBtn = document.getElementById("movies-btn");
   const seriesBtn = document.getElementById("series-btn");
-  const moviesSection = document.getElementsByClassName("movies-section")[0];
-  const seriesSection = document.getElementsByClassName("series-section")[0];
+  const moviesSection = document.getElementsByClassName("movies-section-index")[0];
+  const seriesSection = document.getElementsByClassName("series-section-i")[0];
 
   moviesBtn.addEventListener("click", function () {
     moviesSection.style.display = "block";

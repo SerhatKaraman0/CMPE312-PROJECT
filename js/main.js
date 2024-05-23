@@ -485,6 +485,7 @@ fetchUpcomingMovieData()
   .then((movies) => {
     movies.forEach((movie) => {
       const movieDiv2 = createMovieDiv(movie);
+      console.log(movie.title);
       appendMovieDiv(movieDiv2, "film-row-upcoming");
     });
   })

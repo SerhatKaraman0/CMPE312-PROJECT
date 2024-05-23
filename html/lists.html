@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyFilmList</title>
     <link rel="stylesheet" href="/css/lists.css">
+    <style>
+        .film-list-container {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .selected-film-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .delete-film-button {
+            background-color: #ff0000;
+            color: #ffffff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
+
 <body>
     <header>
         <h1>MyFilmList</h1>
@@ -40,25 +64,29 @@
                     <option value="Share link">Share link</option>
                 </select>
             </div>
-            
+
             <div class="form-group">
                 <label for="description">Description</label>
                 <textarea id="description"></textarea>
             </div>
             <div class="form-group">
-                <div class="buttons-group">
-                    <button class="add-film">Add a Film</button> <label for="file-upload" class="import">Import</label>
-                    <input id="file-upload" type="file"/>
-                    
+                <div class="film-select">
+                    <input id="film-name-input" type="text" placeholder="Enter name of film...">
                 </div>
-                <input class="add-film-input" type="text" placeholder="Enter name of film...">
+                <div class="selected-films" id="selected-films">
+                    <p>Selected Films:</p>
+                    <div id="selected-film-list"></div>
+                </div>
+            </div>
+            <div class="list-status" id="film-list">
+                <div class="film-list-container">
+                    <p>Your list is empty. Add films using the field above, or from the links on a film poster or page.
+                    </p>
+                </div>
             </div>
             <div class="buttons">
                 <button class="cancel">Cancel</button>
                 <button class="save">Save</button>
-            </div>
-            <div class="list-status">
-                <p>Your list is empty. Add films using the field above, or from the links on a film poster or page.</p>
             </div>
         </section>
     </main>
@@ -69,4 +97,5 @@
 
     <script src="/js/lists.js"></script>
 </body>
+
 </html>

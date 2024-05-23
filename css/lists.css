@@ -71,7 +71,9 @@ footer {
   margin-bottom: 5px;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -79,25 +81,25 @@ input, select, textarea {
   color: white;
   border: 1px solid #333;
   border-radius: 3px;
-  
 }
 
-textarea{
+textarea {
   width: 98%;
 }
 
-input[type="file"]{
+input[type="file"] {
   display: none;
 }
 
-#list-name, #tags, .add-film-input{
+#list-name,
+#tags,
+.add-film-input {
   margin-left: -10px;
 }
 
-.add-film{
+.add-film {
   margin-bottom: 10px;
 }
-
 
 textarea {
   height: 100px;
@@ -111,7 +113,6 @@ textarea {
   margin-right: 10px;
   cursor: pointer;
   border-radius: 3px;
-  
 }
 
 .add-film:hover {
@@ -127,9 +128,6 @@ textarea {
   border-radius: 3px;
   width: 65px;
   height: 15px;
-  
-  
-  
 }
 
 .import:hover {
@@ -142,7 +140,7 @@ textarea {
   margin-top: 20px;
 }
 
-.buttons-group{
+.buttons-group {
   display: flex;
 
   margin-top: 20px;

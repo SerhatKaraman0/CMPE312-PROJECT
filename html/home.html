@@ -12,7 +12,7 @@
       <nav>
         <ul>
           <li>
-            <a href="/html/user-view.html" target="_blank" style="color: yellow"
+            <a href="/html/home.html" target="_blank" style="color: yellow"
               >Home</a
             >
           </li>
@@ -28,54 +28,105 @@
 
     <main>
       <section class="get-started">
-        <h2>Get Started</h2>
-        <p>
-          Track the films you've watched, create watchlists, and read reviews.
-        </p>
-        <a
-          href="/html/login-signup-page.html"
-          target="_blank"
-          class="btn-signup"
-          >Sign Up</a
-        >
+        <section class="welcome">
+          <h2>Welcome to MyFilmList</h2>
+          <p>Discover, organize, and share your favorite movies.</p>
+          <button class="recommend-button" onclick="toggleRecommendSection()">
+            Recommend Me Something
+          </button>
+          <section id="recommend-section" class="recommend-section">
+            <h3>Let's Find You a Movie!</h3>
+            <div class="question">
+              <p>How do you feel today?</p>
+              <div class="button-group">
+                <button data-type="mood">Happy</button>
+                <button data-type="mood">Moody</button>
+                <button data-type="mood">Sad</button>
+                <button data-type="mood">Tense</button>
+                <button data-type="mood">Fearful</button>
+                <button data-type="mood">Emotional</button>
+                <button data-type="mood">Confident</button>
+                <button data-type="mood">Calm</button>
+                <button data-type="mood">Optimistic</button>
+                <button data-type="mood">Pessimistic</button>
+                <button data-type="mood">Stressful</button>
+              </div>
+              <p>What's your favourite genre?</p>
+              <div class="button-group">
+                <button data-type="genre">Action</button>
+                <button data-type="genre">Horror</button>
+                <button data-type="genre">Thriller</button>
+                <button data-type="genre">Crime</button>
+                <button data-type="genre">Drama</button>
+                <button data-type="genre">Documentary</button>
+                <button data-type="genre">War</button>
+                <button data-type="genre">Fantasy</button>
+                <button data-type="genre">Art</button>
+                <button data-type="genre">Animation</button>
+                <button data-type="genre">Romantic Comedy</button>
+              </div>
+              <p>Length preference?</p>
+              <div class="button-group">
+                <button data-type="length">Short</button>
+                <button data-type="length">Medium</button>
+                <button data-type="length">Long</button>
+              </div>
+            </div>
+            <section class="buttons">
+              <div>
+                <button
+                  class="recommend-based-on-preference"
+                  onclick="recommendMovies()"
+                >
+                  Recommend in My Style
+                </button>
+                <button class="recommend-random">Random Recommend</button>
+              </div>
+            </section>
+            <section class="film-list" id="film-list">
+              <h3>Recommendations</h3>
+              <div class="film-list-container"></div>
+            </section>
+          </section>
+        </section>
       </section>
       <button id="movies-btn">Movies</button>
       <button id="series-btn">TV Series</button>
-      <section class="movies-section">
-        <section class="film-list" id="movies-close">
+      <section class="movies-section-index">
+        <section class="film-list-index" id="movies-close-index">
           <h2>Upcoming Movies</h2>
-          <div class="film-row" id="film-row-upcoming"></div>
+          <div class="film-row-index" id="film-row-upcoming-index"></div>
         </section>
-        <section class="film-list">
+        <section class="film-list-index">
           <h2>Now Playing</h2>
-          <div class="film-row" id="film-row"></div>
+          <div class="film-row-index" id="film-row-index"></div>
         </section>
-        <section class="film-list">
+        <section class="film-list-index">
           <h2>Popular</h2>
-          <div class="film-row" id="film-row-popular"></div>
+          <div class="film-row-index" id="film-row-popular-index"></div>
         </section>
-        <section class="film-list">
+        <section class="film-list-index">
           <h2>Top Rated</h2>
-          <div class="film-row" id="film-row-top-rated"></div>
+          <div class="film-row-index" id="film-row-top-rated-index"></div>
         </section>
       </section>
 
-      <section class="series-section">
-        <section class="film-list" id="series-close">
+      <section class="series-section-index">
+        <section class="film-list-index" id="series-close-index">
           <h2>Airing Today</h2>
-          <div class="film-row" id="series-row-airing-today"></div>
+          <div class="film-row-index" id="series-row-airing-today-index"></div>
         </section>
-        <section class="film-list">
+        <section class="film-list-index">
           <h2>On The Air</h2>
-          <div class="film-row" id="series-row-on-the-air"></div>
+          <div class="film-row-index" id="series-row-on-the-air-index"></div>
         </section>
-        <section class="film-list">
+        <section class="film-list-index">
           <h2>Popular</h2>
-          <div class="film-row" id="series-row-popular"></div>
+          <div class="film-row-index" id="series-row-popular-index"></div>
         </section>
-        <section class="film-list">
+        <section class="film-list-index">
           <h2>Top Rated</h2>
-          <div class="film-row" id="series-row-top-rated"></div>
+          <div class="film-row-index" id="series-row-top-rated-index"></div>
         </section>
       </section>
 

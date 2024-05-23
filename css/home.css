@@ -1,4 +1,5 @@
 body {
+
   font-family: Arial, sans-serif;
   background-color: #222;
   color: #fff;
@@ -594,3 +595,207 @@ input {
 .close:hover {
   color: #ccc;
 }
+=======
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #111;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 20px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s;
+  }
+  
+  nav ul li a:hover {
+    color: #ffcc00; /* Change to your preferred hover color */
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  .film-list {
+    margin-bottom: 30px;
+  }
+  
+  .film-row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .film {
+    width: calc(22% - 2% - 2px); /* Adjusted width to fit 4 films in a row */
+    margin: 1%;
+    background-color: #333;
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .film:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .film img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 5px;
+    transition: transform 0.3s;
+  }
+  
+  .film h3 {
+    margin-top: 10px;
+    font-size: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .get-started {
+    background-color: #111;
+    color: #fff;
+    padding: 50px;
+    text-align: center;
+  }
+  
+  .get-started h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .get-started p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+  .btn-signup {
+    background-color: #ffcc00;
+    color: #111;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-signup:hover {
+    background-color: #deae02; /* Darken the background color on hover */
+  }
+  
+  /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 120%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    margin-top: -150px;
+  }
+  
+  .modal-content {
+    background-color: #111;
+    margin: 13% auto;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 600px;
+    color: #fff;
+    position: relative;
+    overflow: auto;
+  }
+  
+  .close {
+    position: absolute;
+    top: 43px;
+    right: 20px;
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+  .close:hover {
+    color: #ccc;
+  }
+  
+  /* Button styles */
+  .add-buttons {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: none;
+  }
+  
+  .film:hover .add-buttons {
+    display: block;
+  }
+  
+  .add-buttons button {
+    margin-right: 5px;
+    background-color: #ffcc00;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add-buttons button.added {
+    background-color: #28a745;
+  }
+  
+  /* Style for popup window buttons */
+  .modal-content .buttons {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .modal-content .buttons button {
+    margin: 0 10px;
+  }
+  
+  /* Style for the embedded YouTube video */
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Aspect ratio: 16:9 */
+    overflow: hidden;
+  }
+  
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  input{
+    color: red;
+  }
+

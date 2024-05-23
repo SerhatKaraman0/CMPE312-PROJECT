@@ -39,11 +39,11 @@ main {
   padding: 20px;
 }
 
-.film-list {
+.film-list-index {
   margin-bottom: 30px;
 }
 
-.film-row {
+.film-row-index {
   display: flex;
   flex-wrap: wrap;
 }

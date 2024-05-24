@@ -45,4 +45,16 @@ router.get("/friends", function (req, res) {
 app.use("/", router);
 app.listen(process.env.port || 3000);
 
+const msg = `
+All routes:
+home: http://localhost:3000/
+blog: http://localhost:3000/blog
+events: http://localhost:3000/events
+lists: http://localhost:3000/lists
+login-signup: http://localhost:3000/login-signup
+profile: http://localhost:3000/profile
+feed/friends: http://localhost:3000/friends
+`;
+
 console.log("Running at Port http://localhost:3000/");
+console.log(msg);

@@ -72,6 +72,44 @@ window.onclick = function (event) {
   }
 };
 
+function openDbModal(eventDetails) {
+  var modal = document.getElementById("ticketModal");
+  var eventName = document.querySelector(".modal-event-name");
+  var date = document.querySelector(".modal-date");
+  var location = document.querySelector(".modal-location");
+  var description = document.querySelector(".modal-description");
+  var ticketSellers = document.querySelector(".ticket-buttons");
+  var eventThumbnail = document.querySelector(".event-thumbnail");
+
+  eventName.innerHTML = `<a href=${eventDetails.link} style="color: white; text-decoration: none;">${eventDetails.event_name}</a>`;
+  date.innerHTML = formatDateTime(eventDetails.date);
+  location.innerHTML = eventDetails.location;
+  description.innerHTML = "Tags: ";
+
+  var defaultImageSrc = "/img/default-event.png";
+
+  if (eventDetails.photo && eventDetails.photo.trim() !== "") {
+    eventThumbnail.src = eventDetails.photo;
+  } else {
+    // If thumbnail is missing or empty, use the default image source
+    eventThumbnail.src = defaultImageSrc;
+  }
+
+  modal.style.display = "block";
+}
+
+function closeDbModal() {
+  document.getElementById("ticketModal").style.display = "none";
+}
+
+// Close the modal if the user clicks outside of it
+window.onclick = function (event) {
+  const modal = document.getElementById("ticketModal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
 function createEventDiv(eventData) {
   const eventDiv = document.createElement("div");
   const eventImgDiv = document.createElement("div");
@@ -135,6 +173,69 @@ function createEventDiv(eventData) {
   eventCardsContainer.appendChild(eventDiv);
 }
 
+function createDbEventDiv(eventData) {
+  const eventDiv = document.createElement("div");
+  const eventImgDiv = document.createElement("div");
+  const eventImg = document.createElement("img");
+  const eventCardContentDiv = document.createElement("div");
+  const eventCardContentTopDiv = document.createElement("div");
+  const eventCardContentTitle = document.createElement("h3");
+  const eventCardContentDate = document.createElement("p");
+  const eventCardContentBottomDiv = document.createElement("div");
+  const eventCardContentBottomLocation = document.createElement("p");
+  const eventCardContentBottomButton = document.createElement("button");
+
+  eventCardContentBottomButton.innerHTML = "See More";
+  eventDiv.classList.add("event-card");
+  eventImgDiv.classList.add("event-card__image-wrapper");
+
+  var defaultImageSrc = "/public/img/default-event.png";
+
+  if (eventData.photo && eventData.photo.trim() !== "") {
+    eventImg.src = eventData.photo;
+  } else {
+    // If thumbnail is missing or empty, use the default image source
+    eventImg.src = defaultImageSrc;
+  }
+
+  eventCardContentDiv.classList.add("event-card__content");
+  eventCardContentTopDiv.classList.add("event-card__content-top");
+  eventCardContentTitle.classList.add("event-card__title");
+
+  // add title here
+  eventCardContentTitle.innerHTML = eventData.event_name;
+
+  eventCardContentDate.classList.add("event-card__date");
+
+  // add date here
+  eventCardContentDate.innerHTML = formatDateTime(eventData.start_time);
+
+  eventCardContentBottomDiv.classList.add("event-card__content-bottom");
+  eventCardContentBottomLocation.classList.add("event-card__location");
+
+  // add location here
+  eventCardContentBottomLocation.innerHTML = eventData.location;
+
+  eventCardContentBottomButton.classList.add("see-more-btn");
+  eventCardContentBottomButton.onclick = function () {
+    openDbModal(eventData);
+  };
+
+  // Append children elements
+  eventImgDiv.appendChild(eventImg);
+  eventCardContentTopDiv.appendChild(eventCardContentTitle);
+  eventCardContentTopDiv.appendChild(eventCardContentDate);
+  eventCardContentBottomDiv.appendChild(eventCardContentBottomLocation);
+  eventCardContentDiv.appendChild(eventCardContentTopDiv);
+  eventCardContentDiv.appendChild(eventCardContentBottomDiv);
+  eventCardContentDiv.appendChild(eventCardContentBottomButton);
+  eventDiv.appendChild(eventImgDiv);
+  eventDiv.appendChild(eventCardContentDiv);
+
+  const eventCardsContainer = document.getElementById("event-cards");
+  eventCardsContainer.appendChild(eventDiv);
+}
+
 async function fetchEventsFunc(userQuery, userDate) {
   const options = {
     method: "GET",
@@ -162,6 +263,27 @@ async function fetchEventsFunc(userQuery, userDate) {
     console.error("There has been a problem with your fetch operation:", error);
   }
 }
+
+async function fetchDatabaseEvents() {
+  const databaseApiUrl = "http://localhost:8080/events/";
+  try {
+    const response = await fetch(databaseApiUrl);
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("There has been a problem with your fetch operation:", error);
+  }
+}
+
+fetchDatabaseEvents().then((events) => {
+  events.forEach((eventDetail) => {
+    createDbEventDiv(eventDetail);
+  });
+});
 
 document.addEventListener("DOMContentLoaded", function () {
   let selectedEventTypes = [];
@@ -202,8 +324,28 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("No events found or data format is incorrect.");
       }
     });
+    fetchDatabaseEvents().then((events) => {
+      if (events && Array.isArray(events)) {
+        const eventCardsContainer = document.getElementsByClassName(
+          "user-created-events events-container"
+        )[0];
+        eventCardsContainer.innerHTML = "";
+        events.forEach((eventDetail) => {
+          createDbEventDiv(eventDetail);
+        });
+      } else {
+        console.error("Cant fetch the events");
+      }
+    });
   };
 
+  document
+    .querySelector(".show-database-events")
+    .addEventListener("click", function () {
+      document.getElementById("event-cards").style.display = "none";
+      document.getElementsByClassName("user-created-events")[0].style.display =
+        "block";
+    });
   const findEventsButton = document.querySelector(".find-events");
 
   findEventsButton.addEventListener("click", function () {
@@ -256,6 +398,38 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+async function createNewEvent(eventDetails) {
+  /* 
+  {
+    "event_id": 1,
+    "event_name": "Classic Movie Marathon",
+    "photo": "https://m.media-amazon.com/images/I/616hqRzIcTL._AC_UF894,1000_QL80_.jpg",
+    "date": "2023-07-14T21:00:00.000Z",
+    "description": "Join us for a marathon of classic films from the golden age of cinema. From timeless comedies to epic dramas, experience the magic of the big screen like never before.",
+    "location": "Famagusta, Cyprus",
+    "user_id": 4
+  },
+  */
+  const postReqUrl = "http://localhost:8080/events";
+  fetch(postReqUrl, {
+    method: "POST",
+    body: JSON.stringify({
+      event_name: eventDetails.name,
+      photo:
+        "https://cdn.vox-cdn.com/thumbor/Si2spWe-6jYnWh8roDPVRV7izC4=/0x0:1192x795/1400x788/filters:focal(596x398:597x399)/cdn.vox-cdn.com/uploads/chorus_asset/file/22312759/rickroll_4k.jpg",
+      date: eventDetails.date,
+      description: eventDetails.description,
+      location: eventDetails.location,
+      user_id: 1,
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+}
+
 // Event creation modal functions
 const createEventButton = document.querySelector(".create-event");
 const createEventModal = document.getElementById("createEventModal");
@@ -294,32 +468,8 @@ createEventForm.addEventListener("submit", function (event) {
   closeCreateEventModal();
 });
 
-function createNewEvent(event) {
-  console.log("Event created:", event);
-  // You can add code here to send the event data to a server or update the UI
-}
-
 window.onclick = function (event) {
   if (event.target == createEventModal) {
     closeCreateEventModal();
   }
 };
-
-async function fetchDatabaseEvents() {
-  const databaseApiUrl = "http://localhost:8080/events/";
-  try {
-    const response = await fetch(databaseApiUrl);
-    if (!response.ok) {
-      throw new Error("Network response was not ok " + response.statusText);
-    }
-    const data = await response.json();
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.error("There has been a problem with your fetch operation:", error);
-  }
-}
-
-fetchDatabaseEvents().then((events) => {
-  console.log(events);
-});

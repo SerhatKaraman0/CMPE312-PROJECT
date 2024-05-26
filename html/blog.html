@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MyFilmList</title>
-    <link rel="stylesheet" href="/css/blog.css" />
+    <link rel="stylesheet" href="css/blog.css" />
   </head>
   <body>
     <header>
@@ -19,9 +19,7 @@
             <a href="/events" target="_blank">Events</a>
           </li>
           <li>
-            <a href="/blog" target="_blank" style="color: yellow"
-              >Blog</a
-            >
+            <a href="/blog" target="_blank" style="color: yellow">Blog</a>
           </li>
           <li><a href="/friends" target="_blank">Friends</a></li>
         </ul>
@@ -32,35 +30,11 @@
         <h2>Recent Blogs</h2>
         <div id="blog-list">
           <!-- Existing blog posts will be displayed here -->
-          <div class="blog-post">
-            <h2>Title of the Blog</h2>
-            <div class="blog-author">
-              <div class="author-info">
-                <div class="author-picture">
-                  <img
-                    src="/img/default_profile_pic.png"
-                    alt="Author's Profile Picture"
-                  />
-                </div>
-                <span class="author-name">Author's Name</span>
-              </div>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-              vehicula mi sit amet sapien condimentum, id aliquam nisi
-              ullamcorper. Quisque vel ipsum nunc. Fusce ultricies tincidunt
-              lorem, eget gravida lectus vehicula ac. Vivamus tempus varius
-              purus, nec rhoncus dui accumsan id.
-            </p>
-            <div class="blog-image">
-              <img src="/img/default-event.png" alt="Blog Image" />
-            </div>
-          </div>
         </div>
       </section>
       <aside class="sidebar">
         <h2>Create New Post</h2>
-        <form id="blog-form">
+        <form id="blog-form" method="POST">
           <div>
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" required />
@@ -73,7 +47,7 @@
             <label for="body">Body:</label>
             <textarea id="body" name="body" rows="4" required></textarea>
           </div>
-          <button type="submit">Post</button>
+          <button type="submit" id="submit-btn">Post</button>
         </form>
       </aside>
     </main>

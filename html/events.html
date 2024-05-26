@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MyFilmList</title>
-
-    <link rel="stylesheet" href="/css/events.css" />
+    <link rel="stylesheet" href="css/events.css" />
   </head>
   <body>
     <header>
@@ -15,9 +14,7 @@
           <li><a href="/home" target="_blank">Home</a></li>
           <li><a href="/lists" target="_blank">My Lists</a></li>
           <li>
-            <a href="/events" target="_blank" style="color: yellow"
-              >Events</a
-            >
+            <a href="/events" target="_blank" style="color: yellow">Events</a>
           </li>
           <li><a href="/blog" target="_blank">Blog</a></li>
           <li><a href="/feed" target="_blank">Friends</a></li>
@@ -51,8 +48,6 @@
         <span>or</span>
         <button class="find-events">Find Events</button>
 
-        <!-- New button for creating events -->
-
         <select name="date" id="dates">
           <option value="today" selected>Today</option>
           <option value="tomorrow">Tomorrow</option>
@@ -69,8 +64,15 @@
           <option value="rating">Rating</option>
         </select>
       </div>
+      <button class="show-database-events">Events in MyFilmList</button>
+      <button class="show-api-events">Events Near You</button>
       <h1 class="events-in-location-text"></h1>
-      <div id="event-cards"></div>
+      <div id="event-cards" class="events-container">
+        <h1>Api Events</h1>
+      </div>
+      <div class="user-created-events events-container" style="display: none">
+        User events
+      </div>
     </main>
     <div id="ticketModal" class="modal">
       <div class="modal-content">
@@ -79,7 +81,7 @@
           <img
             src="/img/antman.jpg"
             class="event-thumbnail"
-            alt="Haluk Levent Concert"
+            alt="Event Thumbnail"
           />
         </div>
         <h2 class="modal-event-name"></h2>
@@ -96,23 +98,18 @@
         <form id="createEventForm">
           <label for="eventName">Event Name:</label>
           <input type="text" id="eventName" name="eventName" required />
-
           <label for="eventDate">Date:</label>
           <input type="date" id="eventDate" name="eventDate" required />
-
           <label for="eventTime">Time:</label>
           <input type="time" id="eventTime" name="eventTime" required />
-
           <label for="eventLocation">Location:</label>
           <input type="text" id="eventLocation" name="eventLocation" required />
-
           <label for="eventDescription">Description:</label>
           <textarea
             id="eventDescription"
             name="eventDescription"
             required
           ></textarea>
-
           <label for="eventTags">Tags:</label>
           <input
             type="text"
@@ -120,16 +117,11 @@
             name="eventTags"
             placeholder="comma-separated"
           />
-
           <button type="submit">Create Event</button>
         </form>
       </div>
     </div>
-    <button class="created-by-users">Events in MyFilmList</button>
-    <button class="api-events">Events Near You</button>
-    <div class="user-created-events">
 
-    </div>
     <footer>
       <p>&copy; 2024 MyFilmList</p>
     </footer>

@@ -1,17 +1,59 @@
+:root {
+  --colorpri: #000000;
+  --colorsec: #ffffff;
+  --colorac: #654286;
+  --colorac2: #e19c60;
+  --colorhov: #104e8b;
+}
 body {
-  font-family: Arial, sans-serif;
-  background-color: #222;
+  font-family: "DM Sand", sans-serif;
+  background-color: rgba(0, 0, 0, 0.9);
   color: #fff;
   margin: 0;
   padding: 0;
+  left: 50px;
+  background-image: url("https://cdn.discordapp.com/attachments/1215712378893762602/1244050049877409813/3658604_5.png?ex=6653b365&is=665261e5&hm=9a7e5a07c92c831b9b32a1c82919750fd88f1d6d6926e08a820f73e3e7bd3ea1&"); /* Use a relative path to the image file */
+  background-size: cover;
+  background-position: center;
 }
 
 header {
-  background-color: #111;
+  background-color: rgba(255, 255, 255, 0);
   padding: 20px;
   display: flex;
+
   justify-content: space-between;
   align-items: center;
+}
+.container {
+  position: center;
+  width: 100%;
+  height: 20vh;
+}
+.heading2 {
+  position: center;
+  top: 20%;
+  transform: translateY(-70%); /* Adjust the positioning of the heading */
+  color: #fffffff0; /* Change the heading color */
+  font-size: 40px; /* Adjust the font size */
+}
+.heading3 {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  color: var(--colorac2); /* Change the heading color */
+  font-size: 40px;
+  text-align: center;
+}
+.texttop {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  color: var(--colorsec); /* Change the heading color */
+  font-size: 20px;
+  text-align: center;
 }
 
 nav ul {
@@ -32,41 +74,44 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  color: #ffcc00; /* Change to your preferred hover color */
+  color: var(--colorac2); /* Change to your preferred hover color */
 }
 
 main {
   padding: 20px;
   min-height: 100vh;
 }
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 1rem;
-}
 
-section {
+.section {
+  width: 100%; /* Each section takes up the full width of the page */
+  box-sizing: border-box; /* Include padding and border in the width */
+  background-color: #f0f0f0; /* Example background color for the top section */
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: none;
+}
+
+.footer {
+  /* Ensures the footer stays at the bottom */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: None;
+  color: #fff;
+  text-align: center;
+  display: flex; /* Use flexbox for vertical centering */
+  justify-content: center; /* Horizontally center the content */
+  align-items: center;
 }
 
 .form-box {
-  position: relative;
-  width: 400px;
+  position: center;
   height: 450px;
   background: none;
   align-items: center;
   justify-content: center;
   border-radius: 60px;
-  border: 2px solid #ffcc00;
   display: flex;
   background: transparent;
 }
@@ -96,12 +141,19 @@ h2 {
   position: absolute;
   top: 50%;
   left: 5px;
-  transform: translateY(-50%);
-  color: black;
+  transform: translateY(-10%);
+  color: #000000;
+
   pointer-events: none;
 }
-
-
+input::-webkit-input-placeholder {
+  color: rgb(255, 255, 255);
+  opacity: 0.8;
+}
+input:-moz-placeholder {
+  color: rgb(255, 255, 255);
+  opacity: 0.8;
+}
 .inputbox input {
   width: 100%;
   height: 50px;
@@ -110,7 +162,7 @@ h2 {
   outline: none;
   font-size: 1em;
   padding: 0 35px 0 5px;
-  color: white;
+  color: #fff;
 }
 
 .remember a:hover {
@@ -158,19 +210,19 @@ h2 {
 }
 
 .Login:hover:active {
-  background-color: #ffcc00;
+  background-color: var(--colorac);
 }
 
 /* Toggled button styles */
 .toggled {
-  background-color: #ffcc00; /* Toggled color */
+  background-color: var(--colorac); /* Toggled color */
 }
 
 .register {
   text-align: center;
 }
 .register :hover {
-  color: white;
+  color: var(--colorhov);
 }
 
 .forget {
@@ -179,18 +231,19 @@ h2 {
 }
 
 .forget a {
-  color: white;
+  color: var(--colorsec);
   text-decoration: none;
 }
 
 .forget a:hover:active {
-  color: #ffcc00;
+  color: var(--colorac2);
 }
 
 .forget a:hover {
-  color: #ffcc00;
+  color: var(--colorac2);
 }
 
 .forget a:hover:active {
-  color: #ffcc00;
+  color: var(--colorac2);
+  scale: 1.05;
 }

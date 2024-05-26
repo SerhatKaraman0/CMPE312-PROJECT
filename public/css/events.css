@@ -114,6 +114,31 @@ main {
   min-height: 100vh;
 }
 
+.event-buttons {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  gap: 20px; /* Add some space between the buttons */
+  margin-top: 20px;
+}
+
+.event-buttons button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px; /* Adjust padding to match select */
+  margin: 0px 10px 10px 10px;
+  cursor: pointer;
+}
+
+#database-events {
+  display: flex;
+  flex-direction: horizontal;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
 .event-card {
   width: calc(25% - 20px); /* Adjust width for 4 cards per row */
   margin-bottom: 20px;
@@ -294,28 +319,33 @@ select::-ms-expand {
   background-color: rgba(0, 0, 0, 0.5);
   padding-top: 60px;
 }
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
 
-/* Hide the scrollbars */
+/* Modal Content */
 .modal-content {
-  background-color: #333;
-  margin: 5% auto;
+  background-color: #222;
+  margin: 5% auto; /* 15% from the top and centered */
   padding: 20px;
-  width: 60%;
-  max-width: 400px; /* Smaller width */
-  border-radius: 10px;
-  position: relative;
-  overflow: hidden; /* Hide scrollbars */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 600px; /* Maximum width for larger screens */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Box shadow for a nicer look */
 }
 
-.modal-content::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
-}
-
-.modal-content {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
+/* Close button */
 .close {
   color: #aaa;
   float: right;
@@ -330,6 +360,49 @@ select::-ms-expand {
   cursor: pointer;
 }
 
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="time"],
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  font-size: 16px;
+}
+
+form textarea {
+  resize: vertical; /* Allow vertical resizing */
+}
+
+form button[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+form button[type="submit"]:hover {
+  background-color: #45a049;
+}
 .see-more-btn {
   background-color: #28a745;
   color: white;

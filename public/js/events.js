@@ -84,7 +84,8 @@ function openDbModal(eventDetails) {
   eventName.innerHTML = `<a href=${eventDetails.link} style="color: white; text-decoration: none;">${eventDetails.event_name}</a>`;
   date.innerHTML = formatDateTime(eventDetails.date);
   location.innerHTML = eventDetails.location;
-  description.innerHTML = "Tags: ";
+  description.innerHTML = `${eventDetails.description}`;
+  ticketSellers.innerHTML = `Tags: ${eventDetails.tag_name}`;
 
   var defaultImageSrc = "/img/default-event.png";
 
@@ -184,19 +185,13 @@ function createDbEventDiv(eventData) {
   const eventCardContentBottomDiv = document.createElement("div");
   const eventCardContentBottomLocation = document.createElement("p");
   const eventCardContentBottomButton = document.createElement("button");
+  // New element for description
 
   eventCardContentBottomButton.innerHTML = "See More";
   eventDiv.classList.add("event-card");
   eventImgDiv.classList.add("event-card__image-wrapper");
 
-  var defaultImageSrc = "/public/img/default-event.png";
-
-  if (eventData.photo && eventData.photo.trim() !== "") {
-    eventImg.src = eventData.photo;
-  } else {
-    // If thumbnail is missing or empty, use the default image source
-    eventImg.src = defaultImageSrc;
-  }
+  eventImg.src = eventData.photo;
 
   eventCardContentDiv.classList.add("event-card__content");
   eventCardContentTopDiv.classList.add("event-card__content-top");
@@ -208,7 +203,7 @@ function createDbEventDiv(eventData) {
   eventCardContentDate.classList.add("event-card__date");
 
   // add date here
-  eventCardContentDate.innerHTML = formatDateTime(eventData.start_time);
+  eventCardContentDate.innerHTML = eventData.date;
 
   eventCardContentBottomDiv.classList.add("event-card__content-bottom");
   eventCardContentBottomLocation.classList.add("event-card__location");
@@ -225,14 +220,14 @@ function createDbEventDiv(eventData) {
   eventImgDiv.appendChild(eventImg);
   eventCardContentTopDiv.appendChild(eventCardContentTitle);
   eventCardContentTopDiv.appendChild(eventCardContentDate);
-  eventCardContentBottomDiv.appendChild(eventCardContentBottomLocation);
+  eventCardContentBottomDiv.appendChild(eventCardContentBottomLocation); // Append description to the bottom div
   eventCardContentDiv.appendChild(eventCardContentTopDiv);
   eventCardContentDiv.appendChild(eventCardContentBottomDiv);
   eventCardContentDiv.appendChild(eventCardContentBottomButton);
   eventDiv.appendChild(eventImgDiv);
   eventDiv.appendChild(eventCardContentDiv);
 
-  const eventCardsContainer = document.getElementById("event-cards");
+  const eventCardsContainer = document.getElementById("database-events");
   eventCardsContainer.appendChild(eventDiv);
 }
 
@@ -286,6 +281,28 @@ fetchDatabaseEvents().then((events) => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  const showDatabaseEventsButton = document.querySelector(
+    ".show-database-events"
+  );
+  const showApiEventsButton = document.querySelector(".show-api-events");
+
+  const dbEventsContainer = document.getElementById("db-events-container");
+  const apiEventsContainer = document.getElementById("api-events-container");
+
+  showDatabaseEventsButton.addEventListener("click", function () {
+    dbEventsContainer.style.display = "block";
+    apiEventsContainer.style.display = "none";
+  });
+
+  showApiEventsButton.addEventListener("click", function () {
+    apiEventsContainer.style.display = "block";
+    dbEventsContainer.style.display = "none";
+  });
+
+  // Initially display database events
+  dbEventsContainer.style.display = "block";
+  apiEventsContainer.style.display = "none";
+
   let selectedEventTypes = [];
 
   const fetchEvents = (locationText, eventTypes) => {
@@ -415,8 +432,7 @@ async function createNewEvent(eventDetails) {
     method: "POST",
     body: JSON.stringify({
       event_name: eventDetails.name,
-      photo:
-        "https://cdn.vox-cdn.com/thumbor/Si2spWe-6jYnWh8roDPVRV7izC4=/0x0:1192x795/1400x788/filters:focal(596x398:597x399)/cdn.vox-cdn.com/uploads/chorus_asset/file/22312759/rickroll_4k.jpg",
+      photo: eventDetails.photo,
       date: eventDetails.date,
       description: eventDetails.description,
       location: eventDetails.location,
@@ -452,9 +468,10 @@ createEventForm.addEventListener("submit", function (event) {
   const eventLocation = document.getElementById("eventLocation").value;
   const eventDescription = document.getElementById("eventDescription").value;
   const eventTags = document.getElementById("eventTags").value.split(",");
-
+  const eventPhoto = document.getElementById("eventImage").value;
   const newEvent = {
     name: eventName,
+    photo: eventPhoto,
     date: eventDate,
     time: eventTime,
     location: eventLocation,

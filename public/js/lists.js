@@ -5,7 +5,7 @@ async function fetchMovieTitle(query) {
     method: "GET",
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMzgzNjlhOGQ3M2Y1OWVmZDk0MjhjMDMxYWE5NGEwYyIsInN1YiI6IjVlZDUzOTg3MWIxNTdkMDAxZjU2ZjMxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.t6oglj_4DkYEeq59zGSFArZw-r9oUG0Rh8mbWCtW6zk`,
+      Authorization: `Bearer YOUR_API_KEY`,
     },
   };
 
@@ -17,6 +17,7 @@ async function fetchMovieTitle(query) {
     const json = await response.json();
     return json.results;
   } catch (err) {
+    console.error("There has been a problem with your fetch operation:");
     console.error("There has been a problem with your fetch operation:", err);
     return [];
   }
@@ -51,6 +52,7 @@ function showMovieResults(movies) {
 }
 
 function displaySelectedMovie(movie) {
+  console.log(movie);
   const selectedFilmsContainer = document.getElementById("selected-film-list");
   const newFilmDiv = document.createElement("div");
   newFilmDiv.className = "selected-film-item movie-card";
@@ -58,9 +60,14 @@ function displaySelectedMovie(movie) {
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
     : "placeholder-image-url"; // Use a placeholder if no poster
   newFilmDiv.innerHTML = `
-    <img src="${posterPath}" alt="${movie.title} Poster" style="width: 30%; height: auto;"/>
-    <h2>${movie.title}</h2>
-    <button class='delete-film-button '>Delete</button>
+    <img src="${posterPath}" alt="${movie.title} Poster"/>
+    <div class="movie-details">
+      <h2 class="movie-title">${movie.title}</h2>
+      <p class="movie-overview">${movie.overview}</p>
+      <p class="movie-release-date">Release Date: ${movie.release_date}</p>
+      <p class="movie-rating">Rating: ${movie.vote_average}</p>
+      <button class="delete-film-button">Delete</button>
+    </div>
   `;
   selectedFilmsContainer.appendChild(newFilmDiv);
   document

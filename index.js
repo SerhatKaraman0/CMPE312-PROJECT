@@ -4,8 +4,6 @@ const app = express();
 const path = require("path");
 const router = express.Router();
 
-app.use(express.static(path.join(__dirname, "public")));
-
 router.get("/", function (req, res) {
   res.sendFile(path.join(__dirname + "/html/index.html"));
   //__dirname : It will resolve to your project folder.
@@ -43,6 +41,9 @@ router.get("/friends", function (req, res) {
 });
 
 //add the router
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public/css")));
+
 app.use("/", router);
 app.listen(process.env.port || 3000);
 

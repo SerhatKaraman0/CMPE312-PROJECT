@@ -119,6 +119,50 @@ textarea {
   background-color: #218838;
 }
 
+#selected-film-item .movie-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  max-width: 300px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+}
+#selected-film-item .movie-card img {
+  width: 30%;
+  height: auto;
+  border-radius: 8px 8px 0 0;
+}
+#selected-film-item .movie-card h2 {
+  font-size: 1.5em;
+  margin: 0.5em 0;
+}
+#selected-film-item .movie-card p {
+  margin: 0.5em 0;
+}
+#selected-film-item .delete-film-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+#selected-film-item .delete-film-button:hover {
+  background-color: #d32f2f;
+}
+
+#film-list,
+#selected-film-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
 .import {
   background-color: #17a2b8;
   color: white;

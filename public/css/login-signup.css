@@ -97,10 +97,10 @@ h2 {
   top: 50%;
   left: 5px;
   transform: translateY(-50%);
-  color: #fff;
-
+  color: black;
   pointer-events: none;
 }
+
 
 .inputbox input {
   width: 100%;
@@ -110,6 +110,7 @@ h2 {
   outline: none;
   font-size: 1em;
   padding: 0 35px 0 5px;
+  color: white;
 }
 
 .remember a:hover {
@@ -182,13 +183,12 @@ h2 {
   text-decoration: none;
 }
 
-.forget a:hover:active{
+.forget a:hover:active {
   color: #ffcc00;
 }
 
-
-.forget a:hover{
-  color: #ffcc00
+.forget a:hover {
+  color: #ffcc00;
 }
 
 .forget a:hover:active {

@@ -150,6 +150,18 @@ h1 {
   color: #ff6f61;
 }
 
+.blog-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+}
+
+.blog-date {
+  font-size: 14px;
+  color: #888;
+  margin: 0 0 10px 0;
+}
+
 .blog-author {
   display: flex;
   align-items: center;
@@ -185,7 +197,6 @@ p {
 
 /* Footer styles */
 footer {
-  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;

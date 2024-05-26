@@ -3,22 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MyFilmList</title>
+    <title>Meowie</title>
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/1215712378893762602/1244087065696665630/kedilogo_32x32.png?ex=6653d5de&is=6652845e&hm=c0e013aab91f550a34ef3f3f3ec35f92f8ebff294383693ed55f8c71f59dc4e5&" type="image/x-icon">
     <link rel="stylesheet" href="css/home.css" />
   </head>
   <body>
     <header>
-      <h1>MyFilmList</h1>
+      <h1>Meowie</h1>
       <nav>
         <ul>
           <li>
 
-            <a href="/home" target="_blank" style="color: yellow"
-
-              >Home</a
-            >
+            <a href="/home" target="_blank" style="color: var(--colorac)">Home</a>
           </li>
-          <li><a href="/lists" target="_blank">My Lists</a></li>
+          <li><a href="/lists" target="_blank">Lists</a></li>
           <li>
             <a href="/events" target="_blank">Events</a>
           </li>
@@ -32,8 +30,9 @@
       <section class="get-started">
 
         <section class="welcome">
-          <h2>Welcome to MyFilmList</h2>
-          <p>Discover, organize, and share your favorite movies.</p>
+          <img src="https://cdn.discordapp.com/attachments/1215712378893762602/1244094477694664704/kedilogo_1.png?ex=6653dcc5&is=66528b45&hm=efd39d48bb05c8f3197cef851c0d1224032a4b9d9ef0bd66728535e5e1ff0e3d&" alt="Welcome Image" class="welcome-img">
+          <h2>Welcome to Meowie</h2>
+          <p style="color: var(--colorac2)">Discover, organize, and share your favorite movies.</p>
           <button class="recommend-button" onclick="toggleRecommendSection()">
             Recommend Me Something
           </button>
@@ -79,11 +78,12 @@
               <div>
                 <button
                   class="recommend-based-on-preference"
+                  id="btn"
                   onclick="recommendMovies()"
                 >
                   Recommend in My Style
                 </button>
-                <button class="recommend-random">Random Recommend</button>
+                <button class="recommend-random" id="btn">Random Recommend</button>
               </div>
             </section>
             <section class="film-list" id="film-list">
@@ -93,8 +93,10 @@
           </section>
         </section>
       </section>
-      <button id="movies-btn">Movies</button>
-      <button id="series-btn">TV Series</button>
+      <div class="butn">
+        <button id="movies-btn" class="btn">Movies</button>
+        <button id="series-btn" class="btn">TV Series</button>
+      </div>
       <section class="movies-section-index">
         <section class="film-list-index" id="movies-close-index">
           <h2>Upcoming Movies</h2>
@@ -175,7 +177,7 @@
     <footer>
       <p>&copy; 2024 MyFilmList</p>
     </footer>
-    <script src="/js/home.js"></script>
+    <script src="js/home.js"></script>
   </body>
 
 </html>

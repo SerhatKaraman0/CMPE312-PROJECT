@@ -119,48 +119,51 @@ textarea {
   background-color: #218838;
 }
 
-#selected-film-item .movie-card {
-  border: 1px solid #ddd;
+.movie-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
-  padding: 16px;
-  margin: 16px;
-  max-width: 300px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  display: inline-block;
-  vertical-align: top;
-}
-#selected-film-item .movie-card img {
-  width: 30%;
-  height: auto;
-  border-radius: 8px 8px 0 0;
-}
-#selected-film-item .movie-card h2 {
-  font-size: 1.5em;
-  margin: 0.5em 0;
-}
-#selected-film-item .movie-card p {
-  margin: 0.5em 0;
-}
-#selected-film-item .delete-film-button {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 8px;
-}
-#selected-film-item .delete-film-button:hover {
-  background-color: #d32f2f;
+  padding: 20px;
+  margin: 10px 0;
+  width: 300px; /* Adjust as needed */
 }
 
-#film-list,
-#selected-film-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
+.movie-poster {
+  width: 100%; /* Ensures the image takes the full width of the container */
+  height: auto; /* Maintains aspect ratio */
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.movie-details {
+  text-align: center; /* Centers the text content */
+}
+
+.movie-title {
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+.movie-overview,
+.movie-release-date,
+.movie-rating {
+  margin: 5px 0;
+}
+
+.delete-film-button {
+  background-color: var(--colorac2); /* Adjust the color as needed */
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.delete-film-button:hover {
+  background-color: var(--colorhov); /* Adjust the hover color as needed */
 }
 
 .import {

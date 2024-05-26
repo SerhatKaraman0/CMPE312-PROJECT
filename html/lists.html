@@ -9,13 +9,50 @@
       .film-list-container {
         max-height: 200px;
         overflow-y: auto;
+        background: white;
+        color: black;
+        width: 100%;
+        z-index: 1000;
+        position: relative;
       }
-
+      .film-list-container::-webkit-scrollbar {
+        display: none;
+      }
       .selected-film-item {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 5px;
+        flex-direction: column;
+        margin-right: 10px;
+        background: #333;
+        padding: 10px;
+        border-radius: 5px;
+        min-width: 150px;
+      }
+
+      .selected-film-item img {
+        width: 50%;
+        height: auto;
+        border-radius: 5px;
+      }
+
+      .selected-film-item .movie-details {
+        margin-top: 10px;
+        color: #fff;
+      }
+
+      .selected-film-item .movie-title {
+        font-size: 1.2em;
+        margin: 0;
+      }
+
+      .selected-film-item .movie-overview {
+        font-size: 0.9em;
+        margin: 5px 0;
+      }
+
+      .selected-film-item .movie-release-date,
+      .selected-film-item .movie-rating {
+        font-size: 0.8em;
+        margin: 2px 0;
       }
 
       .delete-film-button {
@@ -26,9 +63,24 @@
         border-radius: 5px;
         cursor: pointer;
       }
+
+      #selected-film-list {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+        padding-bottom: 10px;
+      }
+
+      .film-title {
+        cursor: pointer;
+        padding: 5px;
+      }
+
+      .film-title:hover {
+        background-color: #f0f0f0;
+      }
     </style>
   </head>
-
   <body>
     <header>
       <h1>MyFilmList</h1>
@@ -36,9 +88,7 @@
         <ul>
           <li><a href="/home" target="_blank">Home</a></li>
           <li>
-            <a href="/lists" target="_blank" style="color: yellow"
-              >My Lists</a
-            >
+            <a href="/lists" target="_blank" style="color: yellow">My Lists</a>
           </li>
           <li><a href="/events" target="_blank">Events</a></li>
           <li><a href="/blog" target="_blank">Blog</a></li>
@@ -46,7 +96,6 @@
         </ul>
       </nav>
     </header>
-
     <main>
       <section class="new-list">
         <h2>New List</h2>
@@ -67,7 +116,6 @@
             <option value="Share link">Share link</option>
           </select>
         </div>
-
         <div class="form-group">
           <label for="description">Description</label>
           <textarea id="description"></textarea>
@@ -80,17 +128,12 @@
               placeholder="Enter name of film..."
             />
           </div>
+          <div class="list-status" id="film-list">
+            <div class="film-list-container"></div>
+          </div>
           <div class="selected-films" id="selected-films">
             <p>Selected Films:</p>
             <div id="selected-film-list"></div>
-          </div>
-        </div>
-        <div class="list-status" id="film-list">
-          <div class="film-list-container">
-            <p>
-              Your list is empty. Add films using the field above, or from the
-              links on a film poster or page.
-            </p>
           </div>
         </div>
         <div class="buttons">
@@ -99,11 +142,9 @@
         </div>
       </section>
     </main>
-
     <footer>
       <p>&copy; 2024 MyFilmList</p>
     </footer>
-
     <script src="/js/lists.js"></script>
   </body>
 </html>

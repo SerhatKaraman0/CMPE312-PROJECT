@@ -1,5 +1,12 @@
+:root {
+  --colorpri: #000000;
+  --colorsec: #ffffff;
+  --colorac: #654286;
+  --colorac2: #e19c60;
+  --colorhov: #104e8b;
+}
 body {
-  font-family: Arial, sans-serif;
+  font-family: "DM Sand", sans-serif;
   background-color: #222;
   color: #fff;
   margin: 0;
@@ -13,7 +20,12 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-
+.welcome-img {
+  width: 100%; /* Set the width to 100% of the parent element */
+  max-width: 100px; /* Maximum width of the image */
+  height: 40 px; /* Maintain aspect ratio */
+  margin-bottom: 2px; /* Space between the image and the heading */
+}
 nav ul {
   list-style-type: none;
   margin: 0;
@@ -32,7 +44,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  color: #ffcc00; /* Change to your preferred hover color */
+  color: var(--colorac2); /* Change to your preferred hover color */
 }
 
 main {
@@ -49,7 +61,7 @@ main {
 }
 
 .film {
-  width: calc(22% - 2% - 2px); /* Adjusted width to fit 4 films in a row */
+  width: calc(21% - 2% - 2px); /* Adjusted width to fit 4 films in a row */
   margin: 1%;
   background-color: #333;
   text-align: center;
@@ -95,16 +107,16 @@ main {
 }
 
 .btn-signup {
-  background-color: #ffcc00;
+  background-color: var(--colorac);
   color: #111;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 20px;
   text-decoration: none;
   transition: background-color 0.3s;
 }
 
 .btn-signup:hover {
-  background-color: #deae02; /* Darken the background color on hover */
+  background-color: var(--colorhov); /* Darken the background color on hover */
 }
 
 /* Modal styles */
@@ -160,7 +172,7 @@ main {
 
 .add-buttons button {
   margin-right: 5px;
-  background-color: #ffcc00;
+  background-color: var(--colorac);
   color: #fff;
   border: none;
   padding: 5px 10px;
@@ -169,7 +181,8 @@ main {
 }
 
 .add-buttons button.added {
-  background-color: #28a745;
+  background-color: var(--colorhov);
+  color: white;
 }
 
 /* Style for popup window buttons */
@@ -237,7 +250,7 @@ input {
 }
 
 .see-more-btn {
-  background-color: #007bff; /* Button background color */
+  background-color: var(--colorac); /* Button background color */
   color: #fff; /* Button text color */
   border: none; /* Remove button border */
   padding: 8px 12px; /* Add padding */
@@ -247,7 +260,63 @@ input {
 }
 
 .see-more-btn:hover {
-  background-color: #0056b3; /* Change button color on hover */
+  background-color: #104e8b;
+  transform: scale(1.05); /* Change button color on hover */
+}
+.butn {
+  display: flex; /* Enable Flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  width: 100%;
+  height: 20vh; /* Full viewport height */
+}
+
+.btn {
+  background-color: var(--colorac); /* Blue color */
+  color: white; /* White text */
+  padding: 10px 20px; /* Padding for size */
+  font-size: 16px; /* Font size */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  margin: 5px; /* Space between buttons */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition effects */
+}
+
+/* Hover effect for buttons */
+.btn:hover {
+  background-color: #104e8b; /* Darker blue on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Active state for buttons */
+.btn:active {
+  background-color: #0b3c5d; /* Even darker blue when active */
+  transform: scale(0.95); /* Slightly shrink on click */
+}
+
+#btn {
+  background-color: var(--colorac); /* Blue color */
+  color: white; /* White text */
+  padding: 10px 20px; /* Padding for size */
+  font-size: 16px; /* Font size */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  margin: 5px; /* Space between buttons */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition effects */
+}
+
+/* Hover effect for buttons */
+#btn:hover {
+  background-color: #104e8b; /* Darker blue on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Active state for buttons */
+#btn:active {
+  background-color: #0b3c5d; /* Even darker blue when active */
+  transform: scale(0.95); /* Slightly shrink on click */
 }
 
 .film-list-container {
@@ -313,6 +382,21 @@ input {
   opacity: 0;
   transition: max-height 0.5s ease, opacity 0.5s ease;
 }
+.recommend-button {
+  background-color: var(--colorac); /* Change the background color */
+  color: #fff; /* Change the text color */
+  padding: 10px 20px; /* Adjust the padding */
+  font-size: 16px; /* Adjust the font size */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Add a smooth transition effect */
+}
+
+.recommend-button:hover {
+  background-color: #0b3c5d;
+  transform: scale(1.05); /* Change the background color on hover */
+}
 
 .recommend-section.show {
   max-height: 1500px; /* Adjust this value based on the content height */
@@ -334,11 +418,23 @@ input {
 }
 
 .button-group button:hover {
-  background-color: yellow;
-  color: black;
+  background-color: var(--colorhov);
+  color: white;
 }
 
 .button-group button.selected {
-  background-color: yellow;
-  color: black;
+  background-color: var(--colorhov);
+  color: white;
+}
+.footer {
+  /* Ensures the footer stays at the bottom */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: None;
+  color: #fff;
+  text-align: center;
+  display: flex; /* Use flexbox for vertical centering */
+  justify-content: center; /* Horizontally center the content */
+  align-items: center;
 }

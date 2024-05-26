@@ -17,7 +17,7 @@
             <a href="/events" target="_blank" style="color: yellow">Events</a>
           </li>
           <li><a href="/blog" target="_blank">Blog</a></li>
-          <li><a href="/feed" target="_blank">Friends</a></li>
+          <li><a href="/friends" target="_blank">Friends</a></li>
         </ul>
       </nav>
     </header>
@@ -64,16 +64,32 @@
           <option value="rating">Rating</option>
         </select>
       </div>
-      <button class="show-database-events">Events in MyFilmList</button>
-      <button class="show-api-events">Events Near You</button>
-      <h1 class="events-in-location-text"></h1>
-      <div id="event-cards" class="events-container">
-        <h1>Api Events</h1>
+      <div class="event-buttons">
+        <button class="show-database-events">Events in Meowie</button>
+        <button class="show-api-events">Events Near You</button>
       </div>
-      <div class="user-created-events events-container" style="display: none">
-        User events
+      <div
+        class="db-events-container"
+        id="db-events-container"
+        style="display: block"
+      >
+        <h1>Events From Meowie</h1>
+        <div
+          class="user-created-events events-container"
+          id="database-events"
+        ></div>
+      </div>
+      <div
+        class="api-events-container"
+        id="api-events-container"
+        style="display: none"
+      >
+        <h1 class="events-in-location-text"></h1>
+        <div id="event-cards" class="events-container"></div>
       </div>
     </main>
+
+    <!-- Ticket Modal -->
     <div id="ticketModal" class="modal">
       <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
@@ -91,6 +107,8 @@
         <div class="ticket-buttons"></div>
       </div>
     </div>
+
+    <!-- Create Event Modal -->
     <div id="createEventModal" class="modal">
       <div class="modal-content">
         <span class="close" onclick="closeCreateEventModal()">&times;</span>
@@ -104,6 +122,13 @@
           <input type="time" id="eventTime" name="eventTime" required />
           <label for="eventLocation">Location:</label>
           <input type="text" id="eventLocation" name="eventLocation" required />
+          <label for="eventImage">Image URL:</label>
+          <input
+            type="text"
+            id="eventImage"
+            name="eventImage"
+            placeholder="http://example.com/image.jpg"
+          />
           <label for="eventDescription">Description:</label>
           <textarea
             id="eventDescription"
